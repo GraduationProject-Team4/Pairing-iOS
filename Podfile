@@ -6,9 +6,9 @@ target 'Pairing' do
   use_frameworks!
 
   # Pods for Pairing
-  pod 'Alamofire', '~> 5.7.1' 
-  pod 'Moya', '~> 15.0.0'
-  pod 'Kingfisher', '~> 7.8.1'
+  pod 'Alamofire'
+  pod 'Moya'
+  pod 'Kingfisher'
 
 
   target 'PairingTests' do
