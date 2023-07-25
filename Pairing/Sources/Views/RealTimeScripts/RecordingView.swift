@@ -62,7 +62,7 @@ struct RecordingView: View {
                 .padding(.top, 60)
                 .padding(.bottom, 100)
                 .background(Color("grayColor"))
-                .cornerRadius(50)
+                .cornerRadius(45)
             } // VStack
         } // ZStack
     } // body
