@@ -13,7 +13,7 @@ struct PairingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PreRecordingView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
