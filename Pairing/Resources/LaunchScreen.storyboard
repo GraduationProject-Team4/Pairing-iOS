@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBackground" translatesAutoresizingMaskIntoConstraints="NO" id="i5U-lv-7Fu">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZHR-Av-GRZ">
+                                <rect key="frame" x="136.66666666666666" y="333" width="119.99999999999997" height="186"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PairingLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ebM-e3-YV8">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="13h-hY-DsB"/>
+                                            <constraint firstAttribute="height" constant="140" id="fsH-2y-Ah4"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PairingText" translatesAutoresizingMaskIntoConstraints="NO" id="0IV-5m-7il">
+                                        <rect key="frame" x="8" y="155" width="104" height="31"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i5U-lv-7Fu" secondAttribute="trailing" id="0AM-Xu-2pQ"/>
+                            <constraint firstItem="ZHR-Av-GRZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Ace-Jk-i6t"/>
+                            <constraint firstItem="ZHR-Av-GRZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="VKo-A8-77n"/>
+                            <constraint firstItem="i5U-lv-7Fu" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="WOW-xZ-ljK"/>
+                            <constraint firstItem="i5U-lv-7Fu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="mdK-f4-xlJ"/>
+                            <constraint firstAttribute="bottom" secondItem="i5U-lv-7Fu" secondAttribute="bottom" id="rsQ-lm-GPb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="PairingLogo" width="255" height="306"/>
+        <image name="PairingText" width="104" height="31"/>
+        <image name="SplashBackground" width="416" height="900"/>
+    </resources>
+</document>

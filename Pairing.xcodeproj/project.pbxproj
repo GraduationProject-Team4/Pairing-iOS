@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		12098AEBDE00431E02264C35 /* Pods_Pairing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC16431FA8A242F3E07038C /* Pods_Pairing.framework */; };
 		3D7BEDDE76519D00E062DCDD /* Pods_PairingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D2DC79594E6ADDB3DCB3BA /* Pods_PairingTests.framework */; };
+		A23AA2F42A7185DF007BD57F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23AA2F32A7185DF007BD57F /* LaunchScreen.storyboard */; };
+		A23AA2F52A7185DF007BD57F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23AA2F32A7185DF007BD57F /* LaunchScreen.storyboard */; };
+		A23AA2F62A7185DF007BD57F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23AA2F32A7185DF007BD57F /* LaunchScreen.storyboard */; };
 		DD0E37F02A6A769C00122EDD /* PairingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E37EF2A6A769C00122EDD /* PairingApp.swift */; };
 		DD0E37F22A6A769C00122EDD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E37F12A6A769C00122EDD /* ContentView.swift */; };
 		DD0E37F42A6A769D00122EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD0E37F32A6A769D00122EDD /* Assets.xcassets */; };
@@ -45,6 +48,7 @@
 		50D2DC79594E6ADDB3DCB3BA /* Pods_PairingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PairingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		587AC2B7D7FF9A2F9FF287CC /* Pods-Pairing-PairingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pairing-PairingUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pairing-PairingUITests/Pods-Pairing-PairingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7956557999B0835B8F4273BB /* Pods-Pairing-PairingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pairing-PairingUITests.release.xcconfig"; path = "Target Support Files/Pods-Pairing-PairingUITests/Pods-Pairing-PairingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A23AA2F32A7185DF007BD57F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AACD9D5EF35E79A48A03E1BD /* Pods-PairingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PairingTests.release.xcconfig"; path = "Target Support Files/Pods-PairingTests/Pods-PairingTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE5C6ABA3C24F66CFD0D0C9D /* Pods-PairingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PairingTests.debug.xcconfig"; path = "Target Support Files/Pods-PairingTests/Pods-PairingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3370951947AA3E6E89BC9AB /* Pods-Pairing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pairing.release.xcconfig"; path = "Target Support Files/Pods-Pairing/Pods-Pairing.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				DD0E37FA2A6A769D00122EDD /* Pairing.xcdatamodeld */,
 				DD0E37F32A6A769D00122EDD /* Assets.xcassets */,
 				DDFCE7582A6A78C5001CF246 /* API */,
+				A23AA2F32A7185DF007BD57F /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -198,8 +203,8 @@
 		DDFCE7522A6A778B001CF246 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DD112CF62A6E576300F9A5DA /* RealTimeScripts */,
 				DD0E37F12A6A769C00122EDD /* ContentView.swift */,
+				DD112CF62A6E576300F9A5DA /* RealTimeScripts */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A23AA2F42A7185DF007BD57F /* LaunchScreen.storyboard in Resources */,
 				DD0E37F72A6A769D00122EDD /* Preview Assets.xcassets in Resources */,
 				DD0E37F42A6A769D00122EDD /* Assets.xcassets in Resources */,
 			);
@@ -377,6 +383,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A23AA2F52A7185DF007BD57F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A23AA2F62A7185DF007BD57F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,6 +676,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -698,6 +707,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
