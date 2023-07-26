@@ -13,8 +13,9 @@ struct PairingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            PreRecordingView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            HomeView()
+//            PreRecordingView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
