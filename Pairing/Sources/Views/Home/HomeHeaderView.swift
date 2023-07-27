@@ -15,7 +15,7 @@ struct HomeHeaderView: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
-            Image("PairingLogoBlue")
+            Image("PairingLogo")
                 .resizable()
                 .frame(width: 50, height: 60)
                 .background(

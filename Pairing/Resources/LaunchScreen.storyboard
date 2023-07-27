@@ -52,7 +52,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PairingLogo" width="255" height="306"/>
+        <image name="PairingLogo" width="120" height="145"/>
         <image name="PairingText" width="104" height="31"/>
         <image name="SplashBackground" width="416" height="900"/>
     </resources>
