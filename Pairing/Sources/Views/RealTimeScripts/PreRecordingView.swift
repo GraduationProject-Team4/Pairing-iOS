@@ -8,10 +8,24 @@
 import SwiftUI
 
 struct PreRecordingView: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    // 커스텀한 Back button
+    var backButton: some View {
+        Button(action: {
+            presentationMode.wrappedValue.dismiss() // 이전 화면으로 돌아가기
+        }) {
+            Image(systemName: "chevron.backward") // 뒤로가기 아이콘
+                .foregroundColor(.black)
+        }
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
                 Image("RealTimeScriptBackground")
+                    .edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     Spacer()
@@ -61,6 +75,8 @@ struct PreRecordingView: View {
                 } // VStack
             }
         } // ZStack
+        .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
+        .navigationBarItems(leading: backButton) // 커스텀 Back Button 추가
     } // body
 }
 
