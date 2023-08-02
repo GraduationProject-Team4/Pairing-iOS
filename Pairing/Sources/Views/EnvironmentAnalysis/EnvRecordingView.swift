@@ -8,10 +8,11 @@
 import SwiftUI
 
 // MARK: - 환경 분석 녹음 중 화면
-
+// TODO: - 주변 환경음 분석 레포트 화면이랑 합친 후에 화면 전환 작업 수정 필요함
 struct EnvRecordingView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @State public var beforeEnvReport: Bool
     
     var body: some View {
         NavigationView {
@@ -32,13 +33,13 @@ struct EnvRecordingView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 55)
                     } // ZStack
-                    Text("주변 소리를\n듣고 있습니다...")
+                    Text(beforeEnvReport ? "주변 소리를\n듣고 있습니다..." : "실시간으로 소리를\n듣고 있어요...")
                         .padding(.top, 30)
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .lineSpacing(10)
-                    Text("수집되는 소리는 환경 분석에만 사용될 뿐, 저장되지 않아요!")
+                    Text(beforeEnvReport ? "수집되는 소리는 환경 분석에만 사용될 뿐, 저장되지 않아요!" : "설정하신 소리보다 더 큰 소리가 나면 알려드릴게요!")
                         .font(.system(size: 15, weight: .regular))
                         .foregroundColor(.white)
                         .padding(.top, 40)
@@ -62,6 +63,6 @@ struct EnvRecordingView: View {
 
 struct EnvRecordingView_Previews: PreviewProvider {
     static var previews: some View {
-        EnvRecordingView()
+        EnvRecordingView(beforeEnvReport: false)
     }
 }

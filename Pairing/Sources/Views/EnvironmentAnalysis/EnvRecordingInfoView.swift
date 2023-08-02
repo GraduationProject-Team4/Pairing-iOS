@@ -12,6 +12,7 @@ import SwiftUI
 struct EnvRecordingInfoView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @State public var beforeEnvReport: Bool
     
     // 커스텀한 Back button
     var backButton: some View {
@@ -44,19 +45,19 @@ struct EnvRecordingInfoView: View {
                                 .frame(width: 55)
                         } // ZStack
                         
-                        Text("환경 분석을 위해\n주변 소리를 녹음해주세요!")
+                        Text(beforeEnvReport ? "환경 분석을 위해\n주변 소리를 녹음해주세요!" : "설정하신 소리보다 더 큰 소리가\n감지되었어요!")
                             .lineLimit(nil)
                             .font(.system(size: 28, weight: .bold))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(Color("Purple04"))
                         
-                        Text("10초 동안 주변 소리를 녹음해\n현재 환경을 분석한 레포트를 제공해 드릴게요.")
+                        Text(beforeEnvReport ? "10초 동안 주변 소리를 녹음해\n현재 환경을 분석한 레포트를 제공해 드릴게요." : "무슨 일이 생기신 건 아니죠?\n주위를 둘러보세요!")
                             .font(.system(size: 17, weight: .regular))
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color("Purple01"))
                         
-                        NavigationLink(destination: EnvRecordingView()) {
-                            Text("소리 녹음 시작")
+                        NavigationLink(destination: EnvRecordingView(beforeEnvReport: true)) {
+                            Text(beforeEnvReport ? "소리 녹음 시작" : "알림을 계속 받을래요")
                                 .font(.system(size: 15, weight: .semibold))
                                 .tint(.white)
                                 .frame(width: 366, height: 56)
@@ -68,7 +69,7 @@ struct EnvRecordingInfoView: View {
                         Button {
                             self.presentationMode.wrappedValue.dismiss()
                         } label: {
-                            Text("녹음을 중지할래요")
+                            Text(beforeEnvReport ? "녹음을 중지할래요" : "알림은 이제 그만 받을래요")
                                 .font(.system(size: 15, weight: .semibold))
                                 .tint(Color("Purple02"))
                         }
@@ -90,6 +91,6 @@ struct EnvRecordingInfoView: View {
 
 struct EnvRecordingInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        EnvRecordingInfoView()
+        EnvRecordingInfoView(beforeEnvReport: true)
     }
 }
