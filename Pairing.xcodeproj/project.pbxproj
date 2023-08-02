@@ -35,6 +35,7 @@
 		DD0E38122A6A769D00122EDD /* PairingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E38112A6A769D00122EDD /* PairingUITestsLaunchTests.swift */; };
 		DD4889562A70F32900F878C0 /* RealTimeRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4889552A70F32900F878C0 /* RealTimeRecordingView.swift */; };
 		DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */; };
+		DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */; };
 		DFCBFE7E341A8F553F5D5E62 /* Pods_Pairing_PairingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4612A0E2C000A260CCA3FB1 /* Pods_Pairing_PairingUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		DD0E38112A6A769D00122EDD /* PairingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DD4889552A70F32900F878C0 /* RealTimeRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeRecordingView.swift; sourceTree = "<group>"; };
 		DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRecordingView.swift; sourceTree = "<group>"; };
+		DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				A23AA3302A71AE9F007BD57F /* EnvironmentAnalysis.swift */,
+				DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */,
 			);
 			path = EnvironmentAnalysis;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				A23AA3312A71AE9F007BD57F /* EnvironmentAnalysis.swift in Sources */,
 				DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */,
 				A23AA32C2A719D87007BD57F /* HomeHeaderView.swift in Sources */,
+				DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */,
 				A23AA3352A71AF3C007BD57F /* FunctionView.swift in Sources */,
 				DD0E37F22A6A769C00122EDD /* ContentView.swift in Sources */,
 				DD0E37FC2A6A769D00122EDD /* Pairing.xcdatamodeld in Sources */,
