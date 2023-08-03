@@ -13,9 +13,9 @@ struct AnalysisResultView: View {
     
     // MARK: - Properties
     
-    @State private var pinOffset: CGFloat = 170
-    @State private var pinCurrentLocation: CGFloat = 170
-    @State private var alertDecibel: CGFloat = 170
+    @State private var pinOffset: CGFloat = 0
+    @State private var pinCurrentLocation: CGFloat = 0
+    @State private var alertDecibel: CGFloat = 0
     
     var averageDecibel = 60
     var maxDecibel = 150
@@ -56,9 +56,9 @@ struct AnalysisResultView: View {
                                 }
                             }
                             .frame(width: 340, height: 60)
-                        }
+                        } //: VStack
                         Spacer(minLength: 16)
-                    }
+                    } //: Scroll
                     .frame(width: 400, height: 250)
                     .padding(.bottom, 30)
                     
@@ -75,7 +75,7 @@ struct AnalysisResultView: View {
                                 
                                 Rectangle()
                                     .frame(width: 1, height: 30)
-                            }
+                            } //: VStack
                             .position(CGPoint(x: 70, y: 23))
                             .foregroundColor(Color("Purple02"))
                             
@@ -85,7 +85,7 @@ struct AnalysisResultView: View {
                                 
                                 Rectangle()
                                     .frame(width: 1, height: 30)
-                            }
+                            } //: VStack
                             .position(CGPoint(x: 170, y: 23))
                             .foregroundColor(Color("Purple02"))
                             
@@ -95,7 +95,7 @@ struct AnalysisResultView: View {
                                 
                                 Rectangle()
                                     .frame(width: 1, height: 30)
-                            }
+                            } //: VStack
                             .position(CGPoint(x: 270, y: 23))
                             .foregroundColor(Color("Purple02"))
                             
@@ -104,19 +104,17 @@ struct AnalysisResultView: View {
                                 .gesture(
                                     DragGesture()
                                         .onChanged { gesture in
-                                            // TODO: 값 설정하기
+                                            // TODO: alertDecibel 식 수정하기
                                             pinOffset = gesture.translation.width + pinCurrentLocation
                                             alertDecibel = pinOffset
                                         }
                                         .onEnded { gesture in
                                             pinCurrentLocation = pinOffset
                                         }
-                                )
-                                .frame(width: 320, alignment: .center)
-                        }
-                        .frame(width: 320, alignment: .center)
-                    }
-                    .frame( height: 60)
+                                ) //: Gesture
+                        } //: ZStack
+                    } //: ZStack
+                    .frame(width: 320, height: 60, alignment: .center)
                     
                     Text("지금 설정한 데시벨은 \(Int(alertDecibel)) 데시벨이고,\n\(Int(alertDecibel)) 데시벨 수준의 대표적인 소리는 \(representSound)이 있어요!")
                         .frame(width: 340, height: 50)
@@ -145,7 +143,7 @@ struct AnalysisResultView: View {
                 .cornerRadius(70)
             } // VStack
         } // ZStack
-    }
+    } //: Body
 }
 
 // MARK: - Preview
