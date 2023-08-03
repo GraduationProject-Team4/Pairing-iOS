@@ -48,7 +48,7 @@ struct FunctionView: View {
                             }
                         } else {
                             // 환경 분석 기능으로 이동
-                            NavigationLink(destination: EnvironmentAnalysis(), isActive: $showEnvironment) {
+                            NavigationLink(destination: EnvRecordingInfoView(beforeEnvReport: true), isActive: $showEnvironment) {
                                 FunctionTitleView(functionName: functionName)
                             }
                         }
