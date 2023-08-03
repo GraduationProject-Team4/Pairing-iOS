@@ -38,6 +38,9 @@
 		DD0E38122A6A769D00122EDD /* PairingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E38112A6A769D00122EDD /* PairingUITestsLaunchTests.swift */; };
 		DD4889562A70F32900F878C0 /* RealTimeRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4889552A70F32900F878C0 /* RealTimeRecordingView.swift */; };
 		DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */; };
+		DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */; };
+		DDD3B9222A7A578100470CFA /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B9212A7A578100470CFA /* SoundModel.swift */; };
+		DDD3B9262A7A58B200470CFA /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B9252A7A58B200470CFA /* SoundCell.swift */; };
 		DFCBFE7E341A8F553F5D5E62 /* Pods_Pairing_PairingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4612A0E2C000A260CCA3FB1 /* Pods_Pairing_PairingUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +91,9 @@
 		DD0E38112A6A769D00122EDD /* PairingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DD4889552A70F32900F878C0 /* RealTimeRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeRecordingView.swift; sourceTree = "<group>"; };
 		DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRecordingView.swift; sourceTree = "<group>"; };
+		DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisResultView.swift; sourceTree = "<group>"; };
+		DDD3B9212A7A578100470CFA /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
+		DDD3B9252A7A58B200470CFA /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,8 @@
 		A23AA32F2A71AE48007BD57F /* EnvironmentAnalysis */ = {
 			isa = PBXGroup;
 			children = (
+				A23AA3302A71AE9F007BD57F /* EnvironmentAnalysis.swift */,
+				DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */,
 				A25427752A7ACF6700DC7530 /* EnvRecordingInfoView.swift */,
 				A25427792A7ACFA900DC7530 /* EnvRecordingView.swift */,
 			);
@@ -253,6 +261,7 @@
 		DDFCE7532A6A788E001CF246 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DDD3B9212A7A578100470CFA /* SoundModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +283,7 @@
 		DDFCE7562A6A78AC001CF246 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				DDD3B9252A7A58B200470CFA /* SoundCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -552,11 +562,14 @@
 				DD4889562A70F32900F878C0 /* RealTimeRecordingView.swift in Sources */,
 				DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */,
 				A23AA32C2A719D87007BD57F /* HomeHeaderView.swift in Sources */,
+				DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */,
 				A23AA3352A71AF3C007BD57F /* FunctionView.swift in Sources */,
 				DD0E37F22A6A769C00122EDD /* ContentView.swift in Sources */,
+				DDD3B9222A7A578100470CFA /* SoundModel.swift in Sources */,
 				DD0E37FC2A6A769D00122EDD /* Pairing.xcdatamodeld in Sources */,
 				A25427762A7ACF6700DC7530 /* EnvRecordingInfoView.swift in Sources */,
 				DD0E37F02A6A769C00122EDD /* PairingApp.swift in Sources */,
+				DDD3B9262A7A58B200470CFA /* SoundCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

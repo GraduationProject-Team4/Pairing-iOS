@@ -10,8 +10,20 @@ import SwiftUI
 struct RealTimeRecordingView: View {
     // MARK: - PROPERTIES
     
+    @Environment(\.presentationMode) var presentationMode
+    
+    // 커스텀한 Back button
+    var backButton: some View {
+        Button(action: {
+            presentationMode.wrappedValue.dismiss() // 이전 화면으로 돌아가기
+        }) {
+            Image(systemName: "chevron.backward") // 뒤로가기 아이콘
+                .foregroundColor(.black)
+        }
+    }
+    
     // TODO: 일단 더미로 놓고 나중에 API 연결하면 업데이트하기
-    @State private var script: [String] = [
+    var script: [String] = [
         "아 집에가고싶다",
         "야 너도? 나도",
         "우리 근데 집에 가도 할 일이 없는데",
@@ -32,7 +44,7 @@ struct RealTimeRecordingView: View {
         "좋은 생각이야"
     ]
     
-    @State private var keywords: [String] = [
+    var keywords: [String] = [
         "집에가고싶다",
         "집에 가지말까",
         "발로란트"
@@ -142,6 +154,7 @@ struct RealTimeRecordingView: View {
                 .cornerRadius(70)
             } // VStack
         } // ZStack
+        .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
     } // body
 }
 
