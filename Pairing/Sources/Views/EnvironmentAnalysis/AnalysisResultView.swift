@@ -38,8 +38,7 @@ struct AnalysisResultView: View {
                 
                 VStack(spacing: 15) {
                     Text("지금 내 주위의 소리는 🤔\n평균적으로 \(averageDecibel)dB, 최대 \(maxDecibel)dB")
-                        .font(.system(size: 26))
-                        .fontWeight(.bold)
+                        .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                         .frame(width: 340, alignment: .leading)
                     
                     Text("이 곳에서는 이런 소리들이 들려요!")
