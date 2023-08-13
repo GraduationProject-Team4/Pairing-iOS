@@ -13,6 +13,7 @@ struct EnvRecordingView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State public var beforeEnvReport: Bool
+    @State private var showNextScreen: Bool = false
     
     var body: some View {
         NavigationView {
@@ -54,9 +55,22 @@ struct EnvRecordingView: View {
                     .opacity(0.6)
                     .bold()
                 } // VStack
+                
+                NavigationLink(destination: AnalysisResultView(), isActive: $showNextScreen) { EmptyView() }
             } // ZStack
         } // Navi
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
+        .onAppear {
+            if beforeEnvReport {
+                // 3초 후에 runDelayedFunction() 함수를 실행합니다.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.showNextScreen.toggle()
+                    print("EEE")
+                }
+            }
+            
+            // TODO: - 특정 데시벨 이상의 소리를 감지했을 때 경고창 화면으로 전환하는 기능 추가
+        }
     }
 }
 
