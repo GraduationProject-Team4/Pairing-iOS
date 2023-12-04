@@ -28,8 +28,7 @@ struct SoundCell: View {
                     .cornerRadius(10)
                 
                 Text(name)
-                    .font(.system(size: 15))
-                    .fontWeight(.semibold)
+                    .font(.paragraph3)
                     .frame(alignment: .leading)
                 
                 Spacer()

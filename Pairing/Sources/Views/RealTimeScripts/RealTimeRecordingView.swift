@@ -59,20 +59,20 @@ struct RealTimeRecordingView: View {
                 
                 VStack(spacing: 15) {
                     Text("대화를 녹음하고 있어요...")
-                        .font(.system(size: 20))
-                        .fontWeight(.black)
-                        .frame(width: 340, alignment: .leading)
+                        .font(.custom("AppleSDGothicNeo-Bold", size: 24))
+                        .foregroundColor(Color("Yellow06"))
+                        .frame(width: 350, alignment: .leading)
                     
-                    Text("휴대폰을 대화가 잘 들리게 위치해주세요.\n대화 소리가 겹치면 제대로 인식이 되지 않을 수 있으니 유의하세요.")
+                    Text("휴대폰을 대화가 잘 들리게 위치해주세요.\n대화 소리가 겹치면 인식이 되지 않을 수 있으니 유의하세요.")
                         .multilineTextAlignment(.leading)
-                        .frame(width: 340, alignment: .leading)
-                        .foregroundColor(.gray)
-                        .font(.system(size: 13))
+                        .frame(width: 350, alignment: .leading)
+                        .foregroundColor(Color("Gray04"))
+                        .font(.paragraph5)
                     
                     Text("실시간 대본")
-                        .font(.system(size: 15))
-                        .frame(width: 340, alignment: .leading)
-                        .bold()
+                        .font(.paragraph1)
+                        .foregroundColor(Color("Yellow06"))
+                        .frame(width: 350, alignment: .leading)
                     
                     ScrollView() {
                         Spacer(minLength: 16)
@@ -80,20 +80,20 @@ struct RealTimeRecordingView: View {
                         ForEach(script, id: \.self, content: {
                             Text($0)
                                 .frame(width: 300, alignment: .leading)
-                                .font(.system(size: 14))
-                                .fontWeight(.regular)
+                                .font(.paragraph4)
                         })
                         
                         Spacer(minLength: 16)
                     }
-                    .frame(width: 340, height: 200)
+                    .frame(width: 350, height: 200)
+                    
                     .background(.white)
                     .cornerRadius(16)
                     
                     Text("키워드 요약")
-                        .font(.system(size: 15))
-                        .frame(width: 340, alignment: .leading)
-                        .bold()
+                        .font(.paragraph1)
+                        .foregroundColor(Color("Yellow06"))
+                        .frame(width: 350, alignment: .leading)
                     
                     ZStack {
                         ZStack {
@@ -103,10 +103,9 @@ struct RealTimeRecordingView: View {
                             
                             Text(keywords[0])
                                 .foregroundColor(.white)
-                                .font(.system(size: 22))
-                                .fontWeight(.semibold)
+                                .font(.custom("AppleSDGothicNeo-Bold", size: 24))
                         }
-                        .position(x: 170, y: 100)
+                        .position(x: 170, y: 90)
                         
                         ZStack {
                             Circle()
@@ -115,8 +114,7 @@ struct RealTimeRecordingView: View {
                             
                             Text(keywords[1])
                                 .foregroundColor(.white)
-                                .font(.system(size: 16))
-                                .fontWeight(.semibold)
+                                .font(.paragraph1)
                         }
                         .position(x: 60, y: 60)
                         
@@ -126,7 +124,7 @@ struct RealTimeRecordingView: View {
                                 .frame(width: 100)
                             
                             Text(keywords[2])
-                                .font(.system(size: 15))
+                                .font(.title5)
                                 .fontWeight(.semibold)
                         }
                         .position(x: 280, y: 70)
@@ -134,18 +132,16 @@ struct RealTimeRecordingView: View {
                     .frame(width: 340, height: 200)
                     
                     Button("대화를 요약해주세요") {}
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
+                        .font(.paragraph1)
                         .frame(width: 370, height: 48)
                         .background(Color("Yellow05"))
                         .foregroundColor(Color.white)
                         .cornerRadius(8)
                     
                     Button("녹음을 중지할래요") {}
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
+                        .font(.paragraph1)
                         .frame(width: 370, height: 30)
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color("Gray03"))
                 } // VStack
                 .padding(.horizontal, 40)
                 .padding(.top, 50)

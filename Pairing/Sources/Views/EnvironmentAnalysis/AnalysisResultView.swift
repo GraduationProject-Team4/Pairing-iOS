@@ -52,14 +52,14 @@ struct AnalysisResultView: View {
                     
                     VStack(spacing: 15) {
                         Text("지금 내 주위의 소리는 🤔\n평균적으로 \(averageDecibel)dB, 최대 \(maxDecibel)dB")
-                            .font(.system(size: 26))
-                            .fontWeight(.bold)
-                            .frame(width: 340, alignment: .leading)
+                            .font(.custom("AppleSDGothicNeo-Bold", size: 28))
+                            .foregroundColor(Color("Purple04"))
+                            .frame(width: 350, alignment: .leading)
                         
                         Text("이 곳에서는 이런 소리들이 들려요!")
-                            .frame(width: 340, alignment: .leading)
-                            .foregroundColor(.gray)
-                            .font(.system(size: 15))
+                            .font(.paragraph3)
+                            .foregroundColor(Color("Purple02"))
+                            .frame(width: 350, alignment: .leading)
                         
                         ScrollView() {
                             Spacer()
@@ -132,25 +132,23 @@ struct AnalysisResultView: View {
                         
                         Text("지금 설정한 데시벨은 \(Int(alertDecibel)) 데시벨이고,\n\(Int(alertDecibel)) 데시벨 수준의 대표적인 소리는 \(representSound)이 있어요!")
                             .frame(width: 340, height: 50)
-                            .foregroundColor(.gray)
-                            .font(.system(size: 15))
+                            .foregroundColor(Color("Purple04"))
+                            .font(.paragraph5)
                             .multilineTextAlignment(.center)
                         
                         Button {
                             self.showNextScreen.toggle()
                         } label: {
                             Text("150 데시벨 이상이 되면 알림을 받을래요")
-                                .font(.system(size: 15))
-                                .fontWeight(.semibold)
+                                .font(.paragraph1)
                                 .frame(width: 370, height: 48)
                                 .background(Color("Purple03"))
-                                .foregroundColor(Color.white)
+                                .foregroundColor(.white)
                                 .cornerRadius(8)
                         }
                         
                         Button("실시간 알림은 받고싶지 않아요") {}
-                            .font(.system(size: 15))
-                            .fontWeight(.semibold)
+                            .font(.paragraph1)
                             .frame(width: 370, height: 30)
                             .foregroundColor(Color("Purple02"))
                     } // VStack
