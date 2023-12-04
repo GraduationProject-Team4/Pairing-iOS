@@ -27,28 +27,25 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
-                ZStack {
-                    Image("HomeBackground")
-                        .resizable()
-                        .scaledToFill()
+                VStack(alignment: .center, spacing: 0) {
+                    // MARK: - Header
+                    HomeHeaderView()
                     
-                    VStack(alignment: .leading, spacing: 50) {
-                        // MARK: - Header
-                        HomeHeaderView()
-                        
-                        VStack(alignment: .center, spacing: 20) {
-                            // MARK: - Function Views
-                            FunctionView(isScript: false, exampleImage: "EnvironmentExPic", functionName: "☕️ 현재 환경 분석하기", description: "현재 환경 배경음을 녹음해 현재 환경에서 어떤 소리가 들리고 있는지 표시해요.\n사용자가 설정한 특정 데시벨 이상을 인식할 경우 주의 알림이 울립니다.")
-                            FunctionView(isScript: true, exampleImage: "ScriptExPic", functionName: "📄 실시간으로 대화 대본 제공받기", description: "여러 명과 대화할 경우에도 걱정 없어요!\nPairiing은 대화 내용을 추출해 실시간으로 화면에 띄워주고, 인공지능을 이용해 실시간 대화를 요약한 후 키워드를 제공합니다.")
-                        } //: VStack
+                    VStack(alignment: .center, spacing: 26) {
+                        // MARK: - Function Views
+                        FunctionView(isScript: false, exampleImage: "EnvironmentExPic", functionName: "현재 환경 분석", description: "배경음을 녹음해 어떤 소리가 들리고 있는지 알아봅시다.\n기준 데시벨을 설정해준다면 큰 소리가 났을 때도 알려주니 문제없죠.")
+                            .shadow(color: Color("EnvironmentExBack"), radius: 5, x: 0, y: 4)
+                        FunctionView(isScript: true, exampleImage: "ScriptExPic", functionName: "실시간 대화 분석", description: "여러 명과 동시에 대화해야 할 때도 걱정하지 마세요. 실시간 대화 대본과 인공지능이 제공해주는 키워드가 있답니다.")
+                            .shadow(color: Color("ScriptExBack"), radius: 5, x: 0, y: 4)
                     } //: VStack
-                    .padding(.bottom, 35)
-                } //: ZStack
+                    .padding(.top, 30)
+                } //: VStack
             } //: Scroll
             .edgesIgnoringSafeArea(.all)
         }
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
         .navigationBarItems(leading: backButton) // 커스텀 Back Button 추가
+        .foregroundColor(Color("HomeBack"))
     }
 }
 
