@@ -18,9 +18,6 @@ struct EnvRecordingView: View {
     @State private var showNextScreen: Bool = false
     @State public var maxDecibelsThreshold: Float = 80.0 // 기준 데시벨 설정
     
-    let audioRecorder = AVAudioRecorder()
-    
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -77,6 +74,7 @@ struct EnvRecordingView: View {
             
             // TODO: - 특정 데시벨 이상의 소리를 감지했을 때 경고창 화면으로 전환하는 기능 추가
             else {
+                let audioRecorder = AVAudioRecorder()
                 let audioSession = AVAudioSession.sharedInstance()
                 
                 do {
@@ -84,23 +82,26 @@ struct EnvRecordingView: View {
                     try audioSession.setActive(true)
                     
                     audioRecorder.isMeteringEnabled = true
-                    
                     audioRecorder.record()
                     
                     let timer = Timer(timeInterval: 0.5, repeats: true) { _ in
                         audioRecorder.updateMeters()
                         let averageDecibels = audioRecorder.averagePower(forChannel: 0)
                         
+                        print(averageDecibels)
+                        
+                        // MARK: 사용자가 설정한 최대 데시벨을 넘을 경우 경고 화면으로 전환
                         if averageDecibels > maxDecibelsThreshold {
-                            // Sound level exceeds the threshold, perform action or transition here
+                            print("최대 데시벨 초과")
+                            
+                            beforeEnvReport.toggle()
                             showNextScreen.toggle()
-                            print("Exceeded maximum decibel threshold")
                         }
                     }
                     
                     RunLoop.current.add(timer, forMode: .default)
                 } catch {
-                    print("Error setting up audio recording")
+                    print("오디오 녹음 시작 전 에러 발생")
                 }
             }
         }
