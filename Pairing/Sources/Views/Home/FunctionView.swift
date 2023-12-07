@@ -24,44 +24,42 @@ struct FunctionView: View {
     // MARK: - Body
     
     var body: some View {
-        ZStack {
-            // 컨테이너 뷰
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.white.opacity(0.9))
-                .frame(width: 365, height: 320)
+        // 컨테이너 뷰
+        VStack(alignment: .center, spacing: 10) {
+            Image(exampleImage)
+                .resizable()
+                .frame(width: 378, height: 214)
+                .padding(.top, -30)
             
-            VStack(alignment: .center, spacing: 10) {
-                Image(exampleImage)
-                    .resizable()
-                    .frame(width: 340, height: 175)
-                    .padding(.top, -10)
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    Button(action: {
-                        isScript ? showScript.toggle() : showEnvironment.toggle()
-                    }, label: {
-                        // 대본 제공받기 클릭 시
-                        if isScript {
-                            // 실시간 대본 기능으로 이동
-                            NavigationLink(destination: PreRecordingView(), isActive: $showScript) {
-                                FunctionTitleView(functionName: functionName)
-                            }
-                        } else {
-                            // 환경 분석 기능으로 이동
-                            NavigationLink(destination: EnvRecordingInfoView(beforeEnvReport: true), isActive: $showEnvironment) {
-                                FunctionTitleView(functionName: functionName)
-                            }
+            VStack(alignment: .leading, spacing: 10) {
+                Button(action: {
+                    isScript ? showScript.toggle() : showEnvironment.toggle()
+                }, label: {
+                    // 대본 제공받기 클릭 시
+                    if isScript {
+                        // 실시간 대본 기능으로 이동
+                        NavigationLink(destination: PreRecordingView(), isActive: $showScript) {
+                            FunctionTitleView(functionName: functionName)
                         }
-                    })
-                    
-                    Text(description)
-                        .frame(width: 346)
-                        .font(.custom("AppleSDGothicNeo-Light", size: 11))
-                        .foregroundColor(Color("Gray04"))
-                        .frame(width: 346, alignment: .leading)
-                } //: VStack
+                    } else {
+                        // 환경 분석 기능으로 이동
+                        NavigationLink(destination: EnvRecordingInfoView(beforeEnvReport: true), isActive: $showEnvironment) {
+                            FunctionTitleView(functionName: functionName)
+                        }
+                    }
+                })
+                
+                Text(description)
+                    .font(.caption3)
+                    .foregroundColor(Color("Gray04"))
+                    .frame(width: 346, alignment: .leading)
+                    .padding(.leading, 16)
+                    .lineSpacing(4)
             } //: VStack
-        } //: ZStack
+        } //: VStack
+        .frame(width: 378, height: 315)
+        .background(.white)
+        .cornerRadius(16)
     }
 }
 
@@ -70,9 +68,10 @@ struct FunctionView: View {
 struct FunctionTitleView: View {
     var functionName: String
     var body: some View {
-        Text("\(functionName) >")
-            .font(.custom("AppleSDGothicNeo-Bold", size: 20))
+        Text(functionName)
+            .font(.title4)
             .padding(.top, 5)
+            .padding(.leading, 16)
             .foregroundColor(.black)
     }
 }
