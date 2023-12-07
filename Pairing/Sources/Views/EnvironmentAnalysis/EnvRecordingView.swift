@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import AVFoundation
+
 // MARK: - 환경 분석 녹음 중 화면
 // TODO: - 주변 환경음 분석 레포트 화면이랑 합친 후에 화면 전환 작업 수정 필요함
 struct EnvRecordingView: View {
@@ -14,6 +16,10 @@ struct EnvRecordingView: View {
     @Environment(\.presentationMode) var presentationMode
     @State public var beforeEnvReport: Bool
     @State private var showNextScreen: Bool = false
+    @State public var maxDecibelsThreshold: Float = 80.0 // 기준 데시벨 설정
+    
+    let audioRecorder = AVAudioRecorder()
+    
     
     var body: some View {
         NavigationView {
@@ -70,13 +76,33 @@ struct EnvRecordingView: View {
             }
             
             // TODO: - 특정 데시벨 이상의 소리를 감지했을 때 경고창 화면으로 전환하는 기능 추가
+            else {
+                let audioSession = AVAudioSession.sharedInstance()
+                
+                do {
+                    try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+                    try audioSession.setActive(true)
+                    
+                    audioRecorder.isMeteringEnabled = true
+                    
+                    audioRecorder.record()
+                    
+                    let timer = Timer(timeInterval: 0.5, repeats: true) { _ in
+                        audioRecorder.updateMeters()
+                        let averageDecibels = audioRecorder.averagePower(forChannel: 0)
+                        
+                        if averageDecibels > maxDecibelsThreshold {
+                            // Sound level exceeds the threshold, perform action or transition here
+                            showNextScreen.toggle()
+                            print("Exceeded maximum decibel threshold")
+                        }
+                    }
+                    
+                    RunLoop.current.add(timer, forMode: .default)
+                } catch {
+                    print("Error setting up audio recording")
+                }
+            }
         }
-    }
-}
-
-
-struct EnvRecordingView_Previews: PreviewProvider {
-    static var previews: some View {
-        EnvRecordingView(beforeEnvReport: false)
     }
 }

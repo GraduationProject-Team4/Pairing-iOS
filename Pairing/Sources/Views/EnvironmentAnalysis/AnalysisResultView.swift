@@ -46,6 +46,9 @@ struct AnalysisResultView: View {
         NavigationView {
             ZStack {
                 Image("EnviromentBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea(.all)
                 
                 VStack {
                     Spacer()

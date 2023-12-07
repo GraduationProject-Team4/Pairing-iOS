@@ -31,9 +31,6 @@
 		A2D5AF892B1E15B600E19DCF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */; };
 		A2D5AF8A2B1E15B600E19DCF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */; };
 		A2D5AF8B2B1E15B600E19DCF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */; };
-		A2D5AF8D2B205D0600E19DCF /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF8C2B205D0600E19DCF /* Secret.swift */; };
-		A2D5AF8E2B205D0600E19DCF /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF8C2B205D0600E19DCF /* Secret.swift */; };
-		A2D5AF8F2B205D0600E19DCF /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF8C2B205D0600E19DCF /* Secret.swift */; };
 		DD0E37F02A6A769C00122EDD /* PairingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E37EF2A6A769C00122EDD /* PairingApp.swift */; };
 		DD0E37F22A6A769C00122EDD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E37F12A6A769C00122EDD /* ContentView.swift */; };
 		DD0E37F42A6A769D00122EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD0E37F32A6A769D00122EDD /* Assets.xcassets */; };
@@ -46,6 +43,7 @@
 		DD4889562A70F32900F878C0 /* RealTimeRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4889552A70F32900F878C0 /* RealTimeRecordingView.swift */; };
 		DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */; };
 		DDB0F2CF2A888826005A8316 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB0F2CE2A888826005A8316 /* Fonts.swift */; };
+		DDCD6D632B21C22B0012F2E4 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCD6D622B21C22B0012F2E4 /* Secret.swift */; };
 		DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */; };
 		DDD3B9222A7A578100470CFA /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B9212A7A578100470CFA /* SoundModel.swift */; };
 		DDD3B9262A7A58B200470CFA /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B9252A7A58B200470CFA /* SoundCell.swift */; };
@@ -82,7 +80,6 @@
 		A25427792A7ACFA900DC7530 /* EnvRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvRecordingView.swift; sourceTree = "<group>"; };
 		A2D5AF822B1E0F8F00E19DCF /* OpenAIChatRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatRes.swift; sourceTree = "<group>"; };
 		A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Pairing/Sources/Models/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
-		A2D5AF8C2B205D0600E19DCF /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		AACD9D5EF35E79A48A03E1BD /* Pods-PairingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PairingTests.release.xcconfig"; path = "Target Support Files/Pods-PairingTests/Pods-PairingTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE5C6ABA3C24F66CFD0D0C9D /* Pods-PairingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PairingTests.debug.xcconfig"; path = "Target Support Files/Pods-PairingTests/Pods-PairingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3370951947AA3E6E89BC9AB /* Pods-Pairing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pairing.release.xcconfig"; path = "Target Support Files/Pods-Pairing/Pods-Pairing.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +100,7 @@
 		DD4889552A70F32900F878C0 /* RealTimeRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeRecordingView.swift; sourceTree = "<group>"; };
 		DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRecordingView.swift; sourceTree = "<group>"; };
 		DDB0F2CE2A888826005A8316 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		DDCD6D622B21C22B0012F2E4 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisResultView.swift; sourceTree = "<group>"; };
 		DDD3B9212A7A578100470CFA /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
 		DDD3B9252A7A58B200470CFA /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
@@ -159,7 +157,7 @@
 		A2D5AF902B205DA400E19DCF /* Secret */ = {
 			isa = PBXGroup;
 			children = (
-				A2D5AF8C2B205D0600E19DCF /* Secret.swift */,
+				DDCD6D622B21C22B0012F2E4 /* Secret.swift */,
 			);
 			path = Secret;
 			sourceTree = "<group>";
@@ -594,8 +592,8 @@
 				A254277A2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */,
 				DD4889562A70F32900F878C0 /* RealTimeRecordingView.swift in Sources */,
 				DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */,
-				A2D5AF8D2B205D0600E19DCF /* Secret.swift in Sources */,
 				A23AA32C2A719D87007BD57F /* HomeHeaderView.swift in Sources */,
+				DDCD6D632B21C22B0012F2E4 /* Secret.swift in Sources */,
 				DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */,
 				A23AA3352A71AF3C007BD57F /* FunctionView.swift in Sources */,
 				A2D5AF892B1E15B600E19DCF /* NetworkManager.swift in Sources */,
@@ -617,7 +615,6 @@
 				A25427772A7ACF6700DC7530 /* EnvRecordingInfoView.swift in Sources */,
 				A2D5AF8A2B1E15B600E19DCF /* NetworkManager.swift in Sources */,
 				DD0E38062A6A769D00122EDD /* PairingTests.swift in Sources */,
-				A2D5AF8E2B205D0600E19DCF /* Secret.swift in Sources */,
 				A23AA3292A7195FF007BD57F /* HomeView.swift in Sources */,
 				A254277B2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */,
 			);
@@ -634,7 +631,6 @@
 				A2D5AF8B2B1E15B600E19DCF /* NetworkManager.swift in Sources */,
 				DD0E38122A6A769D00122EDD /* PairingUITestsLaunchTests.swift in Sources */,
 				A254277C2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */,
-				A2D5AF8F2B205D0600E19DCF /* Secret.swift in Sources */,
 				A25427782A7ACF6700DC7530 /* EnvRecordingInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -781,6 +777,7 @@
 				DEVELOPMENT_TEAM = 2DF5SKQK2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 좀 !!!! 추가해줘라 ...";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -813,6 +810,7 @@
 				DEVELOPMENT_TEAM = 2DF5SKQK2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 좀 !!!! 추가해줘라 ...";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

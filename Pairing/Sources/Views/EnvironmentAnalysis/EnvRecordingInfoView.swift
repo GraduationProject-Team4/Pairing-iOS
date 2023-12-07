@@ -71,7 +71,7 @@ struct EnvRecordingInfoView: View {
                         } label: {
                             Text(beforeEnvReport ? "녹음을 중지할래요" : "알림은 이제 그만 받을래요")
                                 .font(.system(size: 15, weight: .semibold))
-                                .tint(Color("Purple02"))
+                                .foregroundColor(Color("Purple02"))
                         }
                     } // VStack
                     .padding(.horizontal)
@@ -89,8 +89,8 @@ struct EnvRecordingInfoView: View {
     } // body
 }
 
-struct EnvRecordingInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        EnvRecordingInfoView(beforeEnvReport: true)
-    }
-}
+//struct EnvRecordingInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EnvRecordingInfoView(beforeEnvReport: true)
+//    }
+//}
