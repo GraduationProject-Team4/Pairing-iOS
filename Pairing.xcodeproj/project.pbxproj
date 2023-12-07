@@ -27,6 +27,13 @@
 		A254277A2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25427792A7ACFA900DC7530 /* EnvRecordingView.swift */; };
 		A254277B2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25427792A7ACFA900DC7530 /* EnvRecordingView.swift */; };
 		A254277C2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25427792A7ACFA900DC7530 /* EnvRecordingView.swift */; };
+		A2D5AF832B1E0F8F00E19DCF /* OpenAIChatRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF822B1E0F8F00E19DCF /* OpenAIChatRes.swift */; };
+		A2D5AF892B1E15B600E19DCF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */; };
+		A2D5AF8A2B1E15B600E19DCF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */; };
+		A2D5AF8B2B1E15B600E19DCF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */; };
+		A2D5AF8D2B205D0600E19DCF /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF8C2B205D0600E19DCF /* Secret.swift */; };
+		A2D5AF8E2B205D0600E19DCF /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF8C2B205D0600E19DCF /* Secret.swift */; };
+		A2D5AF8F2B205D0600E19DCF /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D5AF8C2B205D0600E19DCF /* Secret.swift */; };
 		DD0E37F02A6A769C00122EDD /* PairingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E37EF2A6A769C00122EDD /* PairingApp.swift */; };
 		DD0E37F22A6A769C00122EDD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E37F12A6A769C00122EDD /* ContentView.swift */; };
 		DD0E37F42A6A769D00122EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD0E37F32A6A769D00122EDD /* Assets.xcassets */; };
@@ -73,6 +80,9 @@
 		A23AA3342A71AF3C007BD57F /* FunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionView.swift; sourceTree = "<group>"; };
 		A25427752A7ACF6700DC7530 /* EnvRecordingInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvRecordingInfoView.swift; sourceTree = "<group>"; };
 		A25427792A7ACFA900DC7530 /* EnvRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvRecordingView.swift; sourceTree = "<group>"; };
+		A2D5AF822B1E0F8F00E19DCF /* OpenAIChatRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatRes.swift; sourceTree = "<group>"; };
+		A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Pairing/Sources/Models/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
+		A2D5AF8C2B205D0600E19DCF /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		AACD9D5EF35E79A48A03E1BD /* Pods-PairingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PairingTests.release.xcconfig"; path = "Target Support Files/Pods-PairingTests/Pods-PairingTests.release.xcconfig"; sourceTree = "<group>"; };
 		AE5C6ABA3C24F66CFD0D0C9D /* Pods-PairingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PairingTests.debug.xcconfig"; path = "Target Support Files/Pods-PairingTests/Pods-PairingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3370951947AA3E6E89BC9AB /* Pods-Pairing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pairing.release.xcconfig"; path = "Target Support Files/Pods-Pairing/Pods-Pairing.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +156,14 @@
 			path = EnvironmentAnalysis;
 			sourceTree = "<group>";
 		};
+		A2D5AF902B205DA400E19DCF /* Secret */ = {
+			isa = PBXGroup;
+			children = (
+				A2D5AF8C2B205D0600E19DCF /* Secret.swift */,
+			);
+			path = Secret;
+			sourceTree = "<group>";
+		};
 		C0D0843D550F5D06A72C38E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,12 +234,13 @@
 		DD0E381E2A6A76A200122EDD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A2D5AF902B205DA400E19DCF /* Secret */,
 				DD0E37EF2A6A769C00122EDD /* PairingApp.swift */,
 				DD0E37F82A6A769D00122EDD /* Persistence.swift */,
 				DD0E37FA2A6A769D00122EDD /* Pairing.xcdatamodeld */,
 				DD0E37F32A6A769D00122EDD /* Assets.xcassets */,
-				DDFCE7582A6A78C5001CF246 /* API */,
 				A23AA2F32A7185DF007BD57F /* LaunchScreen.storyboard */,
+				DDFCE7582A6A78C5001CF246 /* API */,
 				DDB0F2D02A88882D005A8316 /* Data */,
 			);
 			path = Resources;
@@ -272,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				DDD3B9212A7A578100470CFA /* SoundModel.swift */,
+				A2D5AF822B1E0F8F00E19DCF /* OpenAIChatRes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -301,6 +321,7 @@
 		DDFCE7572A6A78B5001CF246 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A2D5AF882B1E15B600E19DCF /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -568,13 +589,16 @@
 			files = (
 				DD0E37F92A6A769D00122EDD /* Persistence.swift in Sources */,
 				DDB0F2CF2A888826005A8316 /* Fonts.swift in Sources */,
+				A2D5AF832B1E0F8F00E19DCF /* OpenAIChatRes.swift in Sources */,
 				A23AA3282A7195FF007BD57F /* HomeView.swift in Sources */,
 				A254277A2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */,
 				DD4889562A70F32900F878C0 /* RealTimeRecordingView.swift in Sources */,
 				DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */,
+				A2D5AF8D2B205D0600E19DCF /* Secret.swift in Sources */,
 				A23AA32C2A719D87007BD57F /* HomeHeaderView.swift in Sources */,
 				DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */,
 				A23AA3352A71AF3C007BD57F /* FunctionView.swift in Sources */,
+				A2D5AF892B1E15B600E19DCF /* NetworkManager.swift in Sources */,
 				DD0E37F22A6A769C00122EDD /* ContentView.swift in Sources */,
 				DDD3B9222A7A578100470CFA /* SoundModel.swift in Sources */,
 				DD0E37FC2A6A769D00122EDD /* Pairing.xcdatamodeld in Sources */,
@@ -591,7 +615,9 @@
 				A23AA32D2A719D87007BD57F /* HomeHeaderView.swift in Sources */,
 				A23AA3362A71AF3C007BD57F /* FunctionView.swift in Sources */,
 				A25427772A7ACF6700DC7530 /* EnvRecordingInfoView.swift in Sources */,
+				A2D5AF8A2B1E15B600E19DCF /* NetworkManager.swift in Sources */,
 				DD0E38062A6A769D00122EDD /* PairingTests.swift in Sources */,
+				A2D5AF8E2B205D0600E19DCF /* Secret.swift in Sources */,
 				A23AA3292A7195FF007BD57F /* HomeView.swift in Sources */,
 				A254277B2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */,
 			);
@@ -605,8 +631,10 @@
 				A23AA32A2A7195FF007BD57F /* HomeView.swift in Sources */,
 				DD0E38102A6A769D00122EDD /* PairingUITests.swift in Sources */,
 				A23AA3372A71AF3C007BD57F /* FunctionView.swift in Sources */,
+				A2D5AF8B2B1E15B600E19DCF /* NetworkManager.swift in Sources */,
 				DD0E38122A6A769D00122EDD /* PairingUITestsLaunchTests.swift in Sources */,
 				A254277C2A7ACFA900DC7530 /* EnvRecordingView.swift in Sources */,
+				A2D5AF8F2B205D0600E19DCF /* Secret.swift in Sources */,
 				A25427782A7ACF6700DC7530 /* EnvRecordingInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

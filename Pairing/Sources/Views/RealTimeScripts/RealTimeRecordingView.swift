@@ -11,7 +11,8 @@ struct RealTimeRecordingView: View {
     // MARK: - PROPERTIES
     
     @Environment(\.presentationMode) var presentationMode
-    
+    @ObservedObject var networkManager = NetworkManager()
+
     // 커스텀한 Back button
     var backButton: some View {
         Button(action: {
@@ -44,11 +45,7 @@ struct RealTimeRecordingView: View {
         "좋은 생각이야"
     ]
     
-    var keywords: [String] = [
-        "집에가고싶다",
-        "집에 가지말까",
-        "발로란트"
-    ]
+    @State private var keywords: [String] = ["", "", ""]
     
     var body: some View {
         ZStack {
@@ -131,12 +128,38 @@ struct RealTimeRecordingView: View {
                     }
                     .frame(width: 340, height: 200)
                     
-                    Button("대화를 요약해주세요") {}
-                        .font(.paragraph1)
-                        .frame(width: 370, height: 48)
-                        .background(Color("Yellow05"))
-                        .foregroundColor(Color.white)
-                        .cornerRadius(8)
+                    Button("대화를 요약해주세요") {
+                        let scripts = script.joined(separator: "\n")
+                        networkManager.requestKeywords(script: scripts) { keywords, err in
+                            let inputString = keywords ?? "Blank"
+                            
+                            // 정규표현식을 사용하여 1. 2. 3. 뒤의 글자들을 추출
+                            let pattern = "\\d+\\.\\s*(.+)"
+
+                            do {
+                                let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+                                let matches = regex.matches(in: inputString, options: [], range: NSRange(location: 0, length: inputString.utf16.count))
+
+                                var resultArray: [String] = []
+
+                                for match in matches {
+                                    if let range = Range(match.range(at: 1), in: inputString) {
+                                        let substring = String(inputString[range])
+                                        resultArray.append(substring)
+                                    }
+                                }
+                                print(resultArray)
+                                self.keywords = resultArray
+                            } catch {
+                                print("Error creating regular expression: \(error)")
+                            }
+                        }
+                    }
+                    .font(.paragraph1)
+                    .frame(width: 370, height: 48)
+                    .background(Color("Yellow05"))
+                    .foregroundColor(Color.white)
+                    .cornerRadius(8)
                     
                     Button("녹음을 중지할래요") {}
                         .font(.paragraph1)
