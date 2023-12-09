@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct RealTimeRecordingView: View {
     // MARK: - PROPERTIES
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var networkManager = NetworkManager()
-
+    @State var audioRecorder: AVAudioRecorder?
+    
     // 커스텀한 Back button
     var backButton: some View {
         Button(action: {
@@ -77,6 +79,7 @@ struct RealTimeRecordingView: View {
                         ForEach(script, id: \.self, content: {
                             Text($0)
                                 .frame(width: 300, alignment: .leading)
+                                .foregroundColor(Color("Yellow06"))
                                 .font(.paragraph4)
                         })
                         
@@ -174,7 +177,62 @@ struct RealTimeRecordingView: View {
             } // VStack
         } // ZStack
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
+        .onAppear {
+            // 권한 받기
+            getAudioPermission()
+            // 음성 녹음 시작
+            do {
+                var recordURL: URL {
+                    var documentsURL: URL = {
+                        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+                        return paths.first!
+                    }()
+                    let fileName = UUID().uuidString + ".wav"
+                    let url = documentsURL.appendingPathComponent(fileName)
+                    return url
+                }
+                let audioSession = AVAudioSession.sharedInstance()
+                try audioSession.setCategory(.record, mode: .default, options: .duckOthers)
+                try audioSession.setActive(true)
+                let settings: [String: Any] = [
+                    AVFormatIDKey: Int(kAudioFormatLinearPCM),
+                    AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
+                    AVEncoderBitRateKey: 320_000,
+                    AVNumberOfChannelsKey: 2,
+                    AVSampleRateKey: 44_100.0
+                ]
+                self.audioRecorder = try AVAudioRecorder(url: recordURL, settings: settings)
+                audioRecorder?.record()
+            } catch {
+                print("오디오 녹음 시작 전 에러 발생: \(error.localizedDescription)")
+            }
+            // 5초에 한번씩 stt api 실행
+            
+        }
+        .onDisappear {
+            // 음성 녹음 중지
+            if let recorder: AVAudioRecorder = audioRecorder {
+                recorder.stop()
+                let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
+                do {
+                    try audioSession.setActive(false)
+                    print("음성녹음 중지")
+                } catch {
+                    print("음성녹음 중지 실패")
+                    fatalError(error.localizedDescription)
+                }
+            }
+        }
     } // body
+}
+
+func getAudioPermission() {
+    // 권한
+    AVAudioSession.sharedInstance().requestRecordPermission { (accepted) in
+        if accepted {
+            print("permission granted")
+        }
+    }
 }
 
 struct RealTimeRecordingView_Previews: PreviewProvider {

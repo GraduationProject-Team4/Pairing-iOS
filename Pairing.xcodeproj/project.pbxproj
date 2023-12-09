@@ -774,7 +774,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Pairing/Preview Content\"";
-				DEVELOPMENT_TEAM = 2DF5SKQK2R;
+				DEVELOPMENT_TEAM = 67BH3YNZWS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 좀 !!!! 추가해줘라 ...";
@@ -807,7 +807,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Pairing/Preview Content\"";
-				DEVELOPMENT_TEAM = 2DF5SKQK2R;
+				DEVELOPMENT_TEAM = 67BH3YNZWS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 좀 !!!! 추가해줘라 ...";
