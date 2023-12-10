@@ -9,7 +9,7 @@ target 'Pairing' do
   pod 'Alamofire'
   pod 'Moya'
   pod 'Kingfisher'
-
+  pod ‘googleapis’, :path => ‘.’
 
   target 'PairingTests' do
     inherit! :search_paths
