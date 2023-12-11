@@ -29,10 +29,7 @@ struct RealTimeRecordingView: View {
         }
     }
     
-    // TODO: 일단 더미로 놓고 나중에 API 연결하면 업데이트하기
-    @State var script: [String] = [
-        "시작"
-    ]
+    @State var script: [String] = []
     
     @State private var keywords: [String] = ["", "", ""]
     
@@ -124,7 +121,7 @@ struct RealTimeRecordingView: View {
                             let inputString = keywords ?? "Blank"
                             
                             // 정규표현식을 사용하여 1. 2. 3. 뒤의 글자들을 추출
-                            let pattern = "\\d+\\.\\s*(.+)"
+                            let pattern = "\\d+\\.\\s*([^,\\d]+)\\s*(?=\\d+\\.|$)"
                             
                             do {
                                 let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
@@ -138,8 +135,18 @@ struct RealTimeRecordingView: View {
                                         resultArray.append(substring)
                                     }
                                 }
-                                print(resultArray)
-                                self.keywords = resultArray
+                                
+                                if !resultArray.isEmpty {
+                                    if resultArray.count == 1 {
+                                        resultArray.append("")
+                                        resultArray.append("")
+                                    } else if resultArray.count == 2 {
+                                        resultArray.append("")
+                                    }
+                                    self.keywords = resultArray
+                                } else {
+                                    self.keywords = ["Blank", "Blank", "Blank"]
+                                }
                             } catch {
                                 print("Error creating regular expression: \(error)")
                             }
