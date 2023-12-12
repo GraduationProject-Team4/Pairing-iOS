@@ -1,0 +1,40 @@
+#!/bin/sh
+
+echo "Installing Cocoapod dependencies"
+pod install
+
+echo "Clean BoringSSL module.modulemap"
+> Pods/BoringSSL/include/openssl/module.modulemap
+
+echo "Fix the bad imports in the generated files"
+grep -rl "google/api/Annotations.pbobjc.h"  google/** | xargs sed -i '' s@'"google\/api\/Annotations\.pbobjc\.h"'@'\<googleapis\/Annotations\.pbobjc\.h\>'@g
+grep -rl "google/longrunning/Operations.pbobjc.h"  google/** | xargs sed -i '' s@'"google\/longrunning\/Operations\.pbobjc\.h"'@'\<googleapis\/Operations\.pbobjc\.h\>'@g
+grep -rl "google/rpc/Status.pbobjc.h"  google/** | xargs sed -i '' s@'"google\/rpc\/Status\.pbobjc\.h"'@'\<googleapis\/Status\.pbobjc\.h\>'@g
+grep -rl "google/cloud/texttospeech/v1beta1/CloudTts.pbobjc.h" google/** | xargs sed -i '' s@'"google\/cloud\/texttospeech\/v1beta1\/CloudTts\.pbobjc\.h"'@'\"CloudTts\.pbobjc\.h\"'@g
+grep -rl "google/cloud/speech/v1p1beta1/CloudSpeech.pbobjc.h" google/** | xargs sed -i '' s@'"google\/cloud\/speech\/v1p1beta1\/CloudSpeech\.pbobjc\.h"'@'\"CloudSpeech\.pbobjc\.h\"'@g
+grep -rl "google/cloud/translate/v3beta1/TranslationService.pbobjc.h" google/** | xargs sed -i '' s@'"google\/cloud\/translate\/v3beta1\/TranslationService\.pbobjc\.h"'@'\"TranslationService\.pbobjc\.h\"'@g
+
+grep -rl "google/api/Annotations.pbobjc.h"  google/** | \
+	xargs sed -i '' s@'"google\/api\/Annotations\.pbobjc\.h"'@'\<googleapis\/Annotations\.pbobjc\.h\>'@g
+grep -rl "google/longrunning/Operations.pbobjc.h"  google/** | \
+	xargs sed -i '' s@'"google\/longrunning\/Operations\.pbobjc\.h"'@'\<googleapis\/Operations\.pbobjc\.h\>'@g
+grep -rl "google/rpc/Status.pbobjc.h"  google/** | \
+	xargs sed -i '' s@'"google\/rpc\/Status\.pbobjc\.h"'@'\<googleapis\/Status\.pbobjc\.h\>'@g
+grep -rl "google/type/Latlng.pbobjc.h"  google/** | \
+	xargs sed -i '' s@'"google\/type\/Latlng\.pbobjc\.h"'@'\<googleapis\/Latlng\.pbobjc\.h\>'@g
+
+grep -rl "Annotations.pbobjc.h"  pods/** | \
+	xargs sed -i '' s@'"Annotations\.pbobjc\.h"'@'\<Firestore\/Protos\/objc\/google\/api\/Annotations\.pbobjc\.h\>'@g
+grep -rl "Status.pbobjc.h"  pods/** | \
+	xargs sed -i '' s@'"Status\.pbobjc\.h"'@'\<Firestore\/Protos\/objc\/google\/rpc\/Status\.pbobjc\.h\>'@g
+grep -rl "Latlng.pbobjc.h"  pods/** | \
+	xargs sed -i '' s@'"Latlng\.pbobjc\.h"'@'\<Firestore\/Protos\/objc\/google\/type\/Latlng\.pbobjc\.h\>'@g
+grep -rl "Document.pbobjc.h"  pods/** | \
+	xargs sed -i '' s@'"Document\.pbobjc\.h"'@'\<Firestore\/Protos\/objc\/google\/firestore\/v1\/Document\.pbobjc\.h\>'@g
+
+echo "Opening the project workspace in Xcode"
+open SpeechToSpeech.xcworkspace
+
+echo "Now press the run button!"
+
+

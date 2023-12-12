@@ -6,17 +6,14 @@
 //
 
 import Foundation
+import googleapis
 
 class NetworkManager: ObservableObject {
     
     func requestKeywords(script: String, completionHandler: @escaping (String?, Error?) -> ()) {
-        guard let url = URL(string: "https://api.openai.com/v1/chat/completions") else {
-            return
-        }
-        
         let apiKey = "Open_AI_Key"
         let model = "text-davinci-003"
-        let prompt = "\(script)\n이 대화 내용에서 빈출 순으로 키워드 3개만 뽑아줘 한국어로 대답해"
+        let prompt = "[\(script)]\n위의 대괄호 안의 텍스트에서 키워드 최소 1개, 최대 3개만 뽑아줘 1. 2. 3. 이런 식으로 번호로 표시하고, 번호 하나당 하나의 단어만 말해. 그러나 괄호 안이 비어있는 경우에는 아무 말도 하지마"
         
         let temperature = 0.9
         let maxTokens = 150
@@ -43,6 +40,7 @@ class NetworkManager: ObservableObject {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(Secret.API_KEY)", forHTTPHeaderField: "Authorization")
         request.httpBody = jsonData
+        print("ChatGPT Request Body \(requestBody)")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {

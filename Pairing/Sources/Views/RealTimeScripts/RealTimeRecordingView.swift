@@ -6,13 +6,19 @@
 //
 
 import SwiftUI
+import AVFoundation
+import googleapis
 
 struct RealTimeRecordingView: View {
     // MARK: - PROPERTIES
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var networkManager = NetworkManager()
-
+    @State var audioRecorder: AVAudioRecorder?
+    
+    let SAMPLE_RATE = 16000
+    @State var audioData: NSMutableData!
+    
     // 커스텀한 Back button
     var backButton: some View {
         Button(action: {
@@ -23,27 +29,7 @@ struct RealTimeRecordingView: View {
         }
     }
     
-    // TODO: 일단 더미로 놓고 나중에 API 연결하면 업데이트하기
-    var script: [String] = [
-        "아 집에가고싶다",
-        "야 너도? 나도",
-        "우리 근데 집에 가도 할 일이 없는데",
-        "맞긴해",
-        "그럼 집에 가지말까",
-        "좋은 생각인 것 같아",
-        "집에 안가면 뭐하지",
-        "발로란트 하러 갈까",
-        "좋은 생각이야",
-        "아 집에가고싶다",
-        "야 너도? 나도",
-        "우리 근데 집에 가도 할 일이 없는데",
-        "맞긴해",
-        "그럼 집에 가지말까",
-        "좋은 생각인 것 같아",
-        "집에 안가면 뭐하지",
-        "발로란트 하러 갈까",
-        "좋은 생각이야"
-    ]
+    @State var script: [String] = []
     
     @State private var keywords: [String] = ["", "", ""]
     
@@ -77,6 +63,7 @@ struct RealTimeRecordingView: View {
                         ForEach(script, id: \.self, content: {
                             Text($0)
                                 .frame(width: 300, alignment: .leading)
+                                .foregroundColor(Color("Yellow06"))
                                 .font(.paragraph4)
                         })
                         
@@ -134,22 +121,32 @@ struct RealTimeRecordingView: View {
                             let inputString = keywords ?? "Blank"
                             
                             // 정규표현식을 사용하여 1. 2. 3. 뒤의 글자들을 추출
-                            let pattern = "\\d+\\.\\s*(.+)"
-
+                            let pattern = "\\d+\\.\\s*([^,\\d]+)\\s*(?=\\d+\\.|$)"
+                            
                             do {
                                 let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
                                 let matches = regex.matches(in: inputString, options: [], range: NSRange(location: 0, length: inputString.utf16.count))
-
+                                
                                 var resultArray: [String] = []
-
+                                
                                 for match in matches {
                                     if let range = Range(match.range(at: 1), in: inputString) {
                                         let substring = String(inputString[range])
                                         resultArray.append(substring)
                                     }
                                 }
-                                print(resultArray)
-                                self.keywords = resultArray
+                                
+                                if !resultArray.isEmpty {
+                                    if resultArray.count == 1 {
+                                        resultArray.append("")
+                                        resultArray.append("")
+                                    } else if resultArray.count == 2 {
+                                        resultArray.append("")
+                                    }
+                                    self.keywords = resultArray
+                                } else {
+                                    self.keywords = ["Blank", "Blank", "Blank"]
+                                }
                             } catch {
                                 print("Error creating regular expression: \(error)")
                             }
@@ -174,7 +171,71 @@ struct RealTimeRecordingView: View {
             } // VStack
         } // ZStack
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
+        .onAppear {
+            AudioController.sharedInstance.delegate = self
+            // 권한 받기
+            getAudioPermission()
+            // 음성 녹음 시작
+            do {
+                let audioSession = AVAudioSession.sharedInstance()
+                try audioSession.setCategory(.record, mode: .default, options: .duckOthers)
+                audioData = NSMutableData()
+                _ = AudioController.sharedInstance.prepare(specifiedSampleRate: SAMPLE_RATE)
+                SpeechRecognitionService.sharedInstance.sampleRate = SAMPLE_RATE
+                _ = AudioController.sharedInstance.start()
+            } catch {
+                print("오디오 녹음 시작 전 에러 발생: \(error.localizedDescription)")
+            }
+        }
+        .onDisappear {
+            _ = AudioController.sharedInstance.stop()
+            SpeechRecognitionService.sharedInstance.stopStreaming()
+        }
     } // body
+}
+
+func getAudioPermission() {
+    // 권한
+    AVAudioSession.sharedInstance().requestRecordPermission { (accepted) in
+        if accepted {
+            print("permission granted")
+        }
+    }
+}
+
+extension RealTimeRecordingView: AudioControllerDelegate {
+    func processSampleData(_ data: Data) -> Void {
+        audioData.append(data)
+        
+        // We recommend sending samples in 100ms chunks
+        let chunkSize : Int /* bytes/chunk */ = Int(0.1 /* seconds/chunk */
+                                                    * Double(SAMPLE_RATE) /* samples/second */
+                                                    * 2 /* bytes/sample */);
+        
+        if (audioData.length > chunkSize) {
+            SpeechRecognitionService.sharedInstance.streamAudioData(audioData) { [self] (response, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if let response = response {
+                    print(response)
+                    for result in response.resultsArray! {
+                        if let result = result as? StreamingRecognitionResult {
+                            if result.isFinal {
+                                print("result: \(result.alternativesArray[0])")
+                                let trans = result.alternativesArray[0] as? SpeechRecognitionAlternative
+                                print("trans: \(trans?.transcript)")
+                                
+                                DispatchQueue.main.async {
+                                    script.append(trans?.transcript ?? "")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            self.audioData = NSMutableData()
+        }
+    }
 }
 
 struct RealTimeRecordingView_Previews: PreviewProvider {
