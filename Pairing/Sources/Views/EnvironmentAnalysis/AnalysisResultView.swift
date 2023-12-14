@@ -14,15 +14,14 @@ struct AnalysisResultView: View {
     // MARK: - Properties
     
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var networkManager = NetworkManager()
     
-    @State private var pinOffset: CGFloat = 0
-    @State private var pinCurrentLocation: CGFloat = 0
-    @State private var alertDecibel: CGFloat = 0
+    @State private var pinOffset: CGFloat = 117
+    @State private var pinCurrentLocation: CGFloat = 117
+    @State private var alertRange: String = "보통인 정도"
     @State private var showNextScreen: Bool = false
+    @State private var representSound: String = "사이렌"
     
-    var averageDecibel = 60
-    var maxDecibel = 150
-    var representSound = "사이렌"
     var sounds = [
         Sound(name: "사이렌", image: Image(systemName: "light.beacon.min.fill")),
         Sound(name: "사이렌", image: Image(systemName: "light.beacon.min.fill")),
@@ -46,20 +45,19 @@ struct AnalysisResultView: View {
         ZStack {
             Image("EnviromentBackground")
             
-            
             VStack {
-                //Spacer()
+                Spacer()
                 
                 VStack(spacing: 15) {
-                    Text("지금 내 주위의 소리는 🤔\n평균적으로 \(averageDecibel)dB, 최대 \(maxDecibel)dB")
+                    Text("지금 내 주위의 소리는 🤔")
                         .font(.custom("AppleSDGothicNeo-Bold", size: 28))
                         .foregroundColor(Color("Purple04"))
-                        .frame(width: 350, alignment: .leading)
+                        .frame(width: 330, alignment: .leading)
                     
                     Text("이 곳에서는 이런 소리들이 들려요!")
                         .font(.paragraph3)
                         .foregroundColor(Color("Purple02"))
-                        .frame(width: 350, alignment: .leading)
+                        .frame(width: 330, alignment: .leading)
                     
                     ScrollView() {
                         Spacer()
@@ -78,51 +76,65 @@ struct AnalysisResultView: View {
                     
                     ZStack {
                         ZStack {
-                            Rectangle()
+                            Image("DecibelLine")
                                 .frame(width: 320, height: 5)
-                                .foregroundColor(Color("Purple03"))
-                                .cornerRadius(20)
                             
                             VStack(spacing: 0) {
-                                Text("60db")
+                                Text("조용함")
                                     .font(.system(size: 12))
-                                
-                                Rectangle()
-                                    .frame(width: 1, height: 30)
                             } //: VStack
-                            .position(CGPoint(x: 70, y: 23))
-                            .foregroundColor(Color("Purple02"))
+                            .position(CGPoint(x: 25, y: 50))
+                            .foregroundColor(Color("Purple04"))
                             
                             VStack(spacing: 0) {
-                                Text("120db")
+                                Text("보통임")
                                     .font(.system(size: 12))
-                                
-                                Rectangle()
-                                    .frame(width: 1, height: 30)
                             } //: VStack
-                            .position(CGPoint(x: 170, y: 23))
-                            .foregroundColor(Color("Purple02"))
+                            .position(CGPoint(x: 115, y: 50))
+                            .foregroundColor(Color("Purple04"))
                             
                             VStack(spacing: 0) {
-                                Text("180db")
+                                Text("조금 시끄러움")
                                     .font(.system(size: 12))
-                                
-                                Rectangle()
-                                    .frame(width: 1, height: 30)
                             } //: VStack
-                            .position(CGPoint(x: 270, y: 23))
-                            .foregroundColor(Color("Purple02"))
+                            .position(CGPoint(x: 205, y: 50))
+                            .foregroundColor(Color("Purple04"))
+                            
+                            VStack(spacing: 0) {
+                                Text("많이 시끄러움")
+                                    .font(.system(size: 12))
+                            } //: VStack
+                            .position(CGPoint(x: 295, y: 50))
+                            .foregroundColor(Color("Purple04"))
                             
                             Image("decibelPin")
-                                .position(CGPoint(x: pinOffset, y: 10))
+                                .position(CGPoint(x: pinOffset, y: 5))
                                 .gesture(
                                     DragGesture()
                                         .onChanged { gesture in
-                                            // TODO: alertDecibel 식 수정하기
                                             pinOffset = gesture.translation.width + pinCurrentLocation
-                                            alertDecibel = pinOffset
                                         }
                                         .onEnded { gesture in
+                                            if pinOffset < 70 {
+                                                pinOffset = 27
+                                                alertRange = "조용한 정도"
+                                                representSound = ""
+                                            }
+                                            else if pinOffset >= 70 && pinOffset < 160 {
+                                                pinOffset = 117
+                                                alertRange = "보통인 정도"
+                                                representSound = ""
+                                            }
+                                            else if pinOffset >= 160 && pinOffset < 250 {
+                                                pinOffset = 207
+                                                alertRange = "조금 시끄러운 정도"
+                                                representSound = ""
+                                            }
+                                            else {
+                                                pinOffset = 297
+                                                alertRange = "많이 시끄러운 정도"
+                                                representSound = ""
+                                            }
                                             pinCurrentLocation = pinOffset
                                         }
                                 ) //: Gesture
@@ -130,7 +142,7 @@ struct AnalysisResultView: View {
                     } //: ZStack
                     .frame(width: 320, height: 60, alignment: .center)
                     
-                    Text("지금 설정한 데시벨은 \(Int(alertDecibel)) 데시벨이고,\n\(Int(alertDecibel)) 데시벨 수준의 대표적인 소리는 \(representSound)이 있어요!")
+                    Text("지금 설정한 소음 정도는 \(alertRange)고,\n해당 소음 정도의 대표적인 소리는 \(representSound)이 있어요!")
                         .frame(width: 340, height: 50)
                         .foregroundColor(Color("Purple04"))
                         .font(.paragraph5)
@@ -139,7 +151,7 @@ struct AnalysisResultView: View {
                     Button {
                         self.showNextScreen.toggle()
                     } label: {
-                        Text("150 데시벨 이상이 되면 알림을 받을래요")
+                        Text("실시간 알림을 받을래요")
                             .font(.paragraph1)
                             .frame(width: 370, height: 48)
                             .background(Color("Purple03"))
@@ -152,16 +164,20 @@ struct AnalysisResultView: View {
                         .frame(width: 370, height: 30)
                         .foregroundColor(Color("Purple02"))
                 } // VStack
-                .padding(.horizontal, 40)
-                .padding(.top, 50)
+                .padding(.top, 45)
                 .padding(.bottom, 80)
                 .background(Color("Gray01"))
-                .cornerRadius(70)
+                .cornerRadius(32)
             } // VStack
             NavigationLink(destination: EnvRecordingView(beforeEnvReport: false), isActive: $showNextScreen) { EmptyView() }
         } // ZStack
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
         .navigationBarItems(leading: backButton) // 커스텀 Back Button 추가
+        .onAppear(perform: {
+            networkManager.requestTestData { message, error in
+                print(message)
+            }
+        })
     } //: Body
 }
 

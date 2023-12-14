@@ -10,6 +10,35 @@ import googleapis
 
 class NetworkManager: ObservableObject {
     
+    
+    func requestTestData(completionHandler: @escaping (String?, Error?) -> ()) {
+        var request = URLRequest(url: URL(string: "http://121.165.163.173:5000")!)
+        request.httpMethod = "GET"
+        
+        // URLSessionDataTask 생성
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            do {
+                let res = try JSONDecoder().decode(TestResponse.self, from: data)
+                print(res)
+                
+                completionHandler(res.message, nil)
+            } catch {
+                completionHandler(nil, error)
+                print("Error decoding JSON to struct: \(error.localizedDescription)")
+                print(String(data: data, encoding: .utf8) ?? "")
+            }
+        }
+        
+        // GET 요청 전송
+        task.resume()
+    }
+    
+    
     func requestKeywords(script: String, completionHandler: @escaping (String?, Error?) -> ()) {
         let apiKey = "Open_AI_Key"
         let model = "text-davinci-003"

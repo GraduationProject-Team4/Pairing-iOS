@@ -46,6 +46,7 @@
 		DD0E38062A6A769D00122EDD /* PairingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E38052A6A769D00122EDD /* PairingTests.swift */; };
 		DD0E38102A6A769D00122EDD /* PairingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E380F2A6A769D00122EDD /* PairingUITests.swift */; };
 		DD0E38122A6A769D00122EDD /* PairingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E38112A6A769D00122EDD /* PairingUITestsLaunchTests.swift */; };
+		DD198EBC2B2ADBA6009FAFA3 /* TestAPIRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD198EBB2B2ADBA6009FAFA3 /* TestAPIRes.swift */; };
 		DD4889562A70F32900F878C0 /* RealTimeRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4889552A70F32900F878C0 /* RealTimeRecordingView.swift */; };
 		DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */; };
 		DD870B872B2A2C420075DCA4 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD870B862B2A2C420075DCA4 /* Secret.swift */; };
@@ -105,6 +106,8 @@
 		DD0E380B2A6A769D00122EDD /* PairingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PairingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0E380F2A6A769D00122EDD /* PairingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUITests.swift; sourceTree = "<group>"; };
 		DD0E38112A6A769D00122EDD /* PairingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DD198EBB2B2ADBA6009FAFA3 /* TestAPIRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIRes.swift; sourceTree = "<group>"; };
+		DD198EBD2B2ADE02009FAFA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DD4889552A70F32900F878C0 /* RealTimeRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeRecordingView.swift; sourceTree = "<group>"; };
 		DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRecordingView.swift; sourceTree = "<group>"; };
 		DD870B862B2A2C420075DCA4 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
@@ -213,6 +216,7 @@
 		DD0E37EE2A6A769C00122EDD /* Pairing */ = {
 			isa = PBXGroup;
 			children = (
+				DD198EBD2B2ADE02009FAFA3 /* Info.plist */,
 				DD0E37F52A6A769D00122EDD /* Preview Content */,
 				DD0E381E2A6A76A200122EDD /* Resources */,
 				DDFCE7512A6A7774001CF246 /* Sources */,
@@ -305,6 +309,7 @@
 			children = (
 				DDD3B9212A7A578100470CFA /* SoundModel.swift */,
 				A2D5AF822B1E0F8F00E19DCF /* OpenAIChatRes.swift */,
+				DD198EBB2B2ADBA6009FAFA3 /* TestAPIRes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 			files = (
 				DD0E37F92A6A769D00122EDD /* Persistence.swift in Sources */,
 				DD870B872B2A2C420075DCA4 /* Secret.swift in Sources */,
+				DD198EBC2B2ADBA6009FAFA3 /* TestAPIRes.swift in Sources */,
 				DDB0F2CF2A888826005A8316 /* Fonts.swift in Sources */,
 				A2D5AF832B1E0F8F00E19DCF /* OpenAIChatRes.swift in Sources */,
 				A23AA3282A7195FF007BD57F /* HomeView.swift in Sources */,
@@ -785,6 +791,7 @@
 				DEVELOPMENT_TEAM = 2DF5SKQK2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pairing/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 좀 !!!! 추가해줘라 ...";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -818,6 +825,7 @@
 				DEVELOPMENT_TEAM = 2DF5SKQK2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pairing/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 좀 !!!! 추가해줘라 ...";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
