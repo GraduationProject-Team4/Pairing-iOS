@@ -89,8 +89,8 @@ struct EnvRecordingInfoView: View {
     } // body
 }
 
-//struct EnvRecordingInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EnvRecordingInfoView(beforeEnvReport: true)
-//    }
-//}
+struct EnvRecordingInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        EnvRecordingInfoView(beforeEnvReport: true)
+    }
+}
