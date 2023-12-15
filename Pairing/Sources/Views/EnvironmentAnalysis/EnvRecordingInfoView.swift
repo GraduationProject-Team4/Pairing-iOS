@@ -56,7 +56,7 @@ struct EnvRecordingInfoView: View {
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color("Purple01"))
                         
-                        NavigationLink(destination: EnvRecordingView(beforeEnvReport: true)) {
+                        NavigationLink(destination: EnvRecordingView(beforeEnvReport: true, maxDecibel: 0.0)) {
                             Text(beforeEnvReport ? "소리 녹음 시작" : "알림을 계속 받을래요")
                                 .font(.system(size: 15, weight: .semibold))
                                 .tint(.white)

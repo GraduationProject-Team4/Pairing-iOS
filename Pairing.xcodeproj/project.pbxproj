@@ -51,6 +51,7 @@
 		DD7BCC792A6E58CA00B816E9 /* PreRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */; };
 		DD870B872B2A2C420075DCA4 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD870B862B2A2C420075DCA4 /* Secret.swift */; };
 		DDB0F2CF2A888826005A8316 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB0F2CE2A888826005A8316 /* Fonts.swift */; };
+		DDC826F92B2B96510085D054 /* Predict.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC826F82B2B96510085D054 /* Predict.swift */; };
 		DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */; };
 		DDD3B9222A7A578100470CFA /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B9212A7A578100470CFA /* SoundModel.swift */; };
 		DDD3B9262A7A58B200470CFA /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD3B9252A7A58B200470CFA /* SoundCell.swift */; };
@@ -112,6 +113,7 @@
 		DD7BCC782A6E58CA00B816E9 /* PreRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRecordingView.swift; sourceTree = "<group>"; };
 		DD870B862B2A2C420075DCA4 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		DDB0F2CE2A888826005A8316 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		DDC826F82B2B96510085D054 /* Predict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predict.swift; sourceTree = "<group>"; };
 		DDD3B91F2A7A400800470CFA /* AnalysisResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisResultView.swift; sourceTree = "<group>"; };
 		DDD3B9212A7A578100470CFA /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
 		DDD3B9252A7A58B200470CFA /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				DDD3B9212A7A578100470CFA /* SoundModel.swift */,
 				A2D5AF822B1E0F8F00E19DCF /* OpenAIChatRes.swift */,
 				DD198EBB2B2ADBA6009FAFA3 /* TestAPIRes.swift */,
+				DDC826F82B2B96510085D054 /* Predict.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				A2762D232B246A8100007E80 /* AudioController.swift in Sources */,
 				DDD3B9202A7A400800470CFA /* AnalysisResultView.swift in Sources */,
 				A23AA3352A71AF3C007BD57F /* FunctionView.swift in Sources */,
+				DDC826F92B2B96510085D054 /* Predict.swift in Sources */,
 				A2D5AF892B1E15B600E19DCF /* NetworkManager.swift in Sources */,
 				DD0E37F22A6A769C00122EDD /* ContentView.swift in Sources */,
 				DDD3B9222A7A578100470CFA /* SoundModel.swift in Sources */,

@@ -11,6 +11,47 @@ import googleapis
 class NetworkManager: ObservableObject {
     
     
+    func requestPrediction(audio: PredictRequest, completionHandler: @escaping (String?, Error?) -> ()) {
+        let uniqString = UUID().uuidString
+        
+        guard let uploadData = try? JSONEncoder().encode(audio) else {
+            print("데이터를 인코딩할 수 없습니다.")
+            return
+        }
+        
+        var request = URLRequest(url: URL(string: "http://121.165.163.173:5000/pairing")!)
+        request.httpMethod = "POST"
+        request.addValue("multipart/form-data; boundary=\(uniqString)", forHTTPHeaderField: "Content-Type")
+        request.httpBody = uploadData
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("에러 발생: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            do {
+                let res = try JSONDecoder().decode(PredictResponse.self, from: data)
+                
+                completionHandler(res.message, nil)
+            } 
+            catch {
+                completionHandler(nil, error)
+                print("Error decoding JSON to struct: \(error.localizedDescription)")
+                print(String(data: data, encoding: .utf8) ?? "")
+            }
+        }
+        
+        // 요청 전송
+        task.resume()
+    }
+    
+    
     func requestTestData(completionHandler: @escaping (String?, Error?) -> ()) {
         var request = URLRequest(url: URL(string: "http://121.165.163.173:5000")!)
         request.httpMethod = "GET"
@@ -24,7 +65,6 @@ class NetworkManager: ObservableObject {
             
             do {
                 let res = try JSONDecoder().decode(TestResponse.self, from: data)
-                print(res)
                 
                 completionHandler(res.message, nil)
             } catch {

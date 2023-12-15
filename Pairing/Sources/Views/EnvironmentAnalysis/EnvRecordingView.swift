@@ -16,8 +16,10 @@ struct EnvRecordingView: View {
     @Environment(\.presentationMode) var presentationMode
     @State public var beforeEnvReport: Bool
     @State private var showNextScreen: Bool = false
-    @State public var maxDecibelsThreshold: Float = 80.0 // 기준 데시벨 설정
+    @State public var maxDecibel: Float // 기준 데시벨 설정
     @State private var isRecording: Bool = true
+    
+    @State private var recordData = Data()
     
     var body: some View {
         NavigationView {
@@ -60,18 +62,19 @@ struct EnvRecordingView: View {
                     .opacity(0.6)
                     .bold()
                 } // VStack
+                if beforeEnvReport {
+                    NavigationLink(destination: AnalysisResultView(recordFile: recordData), isActive: $showNextScreen) { EmptyView() }
+                }
+                else {
+                    NavigationLink(destination: EnvRecordingInfoView(beforeEnvReport: false), isActive: $showNextScreen) { EmptyView() }
+                }
                 
-                NavigationLink(destination: AnalysisResultView(), isActive: $showNextScreen) { EmptyView() }
             } // ZStack
         } // Navi
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
         .onAppear {
             if beforeEnvReport {
-                // 3초 후에 runDelayedFunction() 함수를 실행합니다.
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    self.showNextScreen.toggle()
-                    print("EEE")
-                }
+                startRecording()
             }
             
             // TODO: - 특정 데시벨 이상의 소리를 감지했을 때 경고창 화면으로 전환하는 기능 추가
@@ -116,7 +119,7 @@ struct EnvRecordingView: View {
                             print(averageDecibels)
                             
                             // MARK: 사용자가 설정한 최대 데시벨을 넘을 경우 경고 화면으로 전환
-                            if averageDecibels > maxDecibelsThreshold {
+                            if averageDecibels > maxDecibel {
                                 print("최대 데시벨 초과")
                                 
                                 beforeEnvReport.toggle()
@@ -134,9 +137,70 @@ struct EnvRecordingView: View {
                 } catch {
                     print("AVAudioRecorder 초기화 중 오류 발생: \(error.localizedDescription)")
                 }
-                
-                
             }
+        }
+    }
+}
+
+extension EnvRecordingView {
+    func startRecording() {
+        
+        var audioRecorder: AVAudioRecorder!
+        var recordingSession: AVAudioSession!
+        
+        do {
+            recordingSession = AVAudioSession.sharedInstance()
+            
+            try recordingSession.setCategory(.playAndRecord, mode: .default)
+            try recordingSession.setActive(true)
+            
+            let audioSettings = [
+                AVFormatIDKey: kAudioFormatLinearPCM,
+                AVSampleRateKey: 44100,
+                AVNumberOfChannelsKey: 2,
+                AVLinearPCMBitDepthKey: 16,
+                AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue
+            ] as [String : Any]
+            
+            let audioFilename = getDocumentsDirectory().appendingPathComponent("predictAudio.wav")
+            
+            let audioSession = AVAudioSession.sharedInstance()
+            
+            AVAudioSession.sharedInstance().requestRecordPermission { (accepted) in
+                if accepted { print("permission granted") }
+            }
+            
+            try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+            try audioSession.setActive(true)
+            
+            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: audioSettings)
+            audioRecorder.record()
+            print("녹음 시작")
+            
+            // 10초 후 녹음 중지
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                audioRecorder.stop()
+                self.convertWAVToData(url: audioFilename)
+                self.showNextScreen.toggle()
+                print("녹음 끝")
+            }
+        } catch {
+            print("Recording failed")
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func convertWAVToData(url: URL) {
+        do {
+            recordData = try Data(contentsOf: url)
+            
+            print("Audio Data: \(recordData)")
+        } catch {
+            print("Error converting WAV to Data: \(error.localizedDescription)")
         }
     }
 }

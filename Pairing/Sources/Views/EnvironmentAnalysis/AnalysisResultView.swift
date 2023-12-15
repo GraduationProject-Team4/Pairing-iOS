@@ -16,11 +16,14 @@ struct AnalysisResultView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var networkManager = NetworkManager()
     
+    @State public var recordFile: Data
+    
     @State private var pinOffset: CGFloat = 117
     @State private var pinCurrentLocation: CGFloat = 117
     @State private var alertRange: String = "보통인 정도"
     @State private var showNextScreen: Bool = false
-    @State private var representSound: String = "사이렌"
+    @State private var representSound: String = "카페 소음"
+    @State private var maxDecibelsThreshold: Float = 0.0
     
     var sounds = [
         Sound(name: "사이렌", image: Image(systemName: "light.beacon.min.fill")),
@@ -118,22 +121,27 @@ struct AnalysisResultView: View {
                                             if pinOffset < 70 {
                                                 pinOffset = 27
                                                 alertRange = "조용한 정도"
-                                                representSound = ""
+                                                representSound = "백색 소음"
+                                                maxDecibelsThreshold = -50
                                             }
                                             else if pinOffset >= 70 && pinOffset < 160 {
                                                 pinOffset = 117
                                                 alertRange = "보통인 정도"
-                                                representSound = ""
+                                                representSound = "카페 소음"
+                                                maxDecibelsThreshold = -40
                                             }
                                             else if pinOffset >= 160 && pinOffset < 250 {
                                                 pinOffset = 207
                                                 alertRange = "조금 시끄러운 정도"
-                                                representSound = ""
+                                                representSound = "대화 소음"
+                                                maxDecibelsThreshold = -30
                                             }
                                             else {
                                                 pinOffset = 297
                                                 alertRange = "많이 시끄러운 정도"
-                                                representSound = ""
+                                                representSound = "사이렌, 충돌음"
+                                                maxDecibelsThreshold = -20
+                                                
                                             }
                                             pinCurrentLocation = pinOffset
                                         }
@@ -169,7 +177,7 @@ struct AnalysisResultView: View {
                 .background(Color("Gray01"))
                 .cornerRadius(32)
             } // VStack
-            NavigationLink(destination: EnvRecordingView(beforeEnvReport: false), isActive: $showNextScreen) { EmptyView() }
+            NavigationLink(destination: EnvRecordingView(beforeEnvReport: false, maxDecibel: maxDecibelsThreshold), isActive: $showNextScreen) { EmptyView() }
         } // ZStack
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
         .navigationBarItems(leading: backButton) // 커스텀 Back Button 추가
@@ -177,14 +185,30 @@ struct AnalysisResultView: View {
             networkManager.requestTestData { message, error in
                 print(message)
             }
+            
+            progressPrediction()
         })
     } //: Body
 }
 
-// MARK: - Preview
 
-struct AnalysisResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnalysisResultView()
+extension AnalysisResultView {
+    func progressPrediction() {
+        do {
+            networkManager.requestPrediction(audio: PredictRequest(file: recordFile)) { message, error in
+                print(message)
+            }
+        } 
+        catch {
+            print("파일을 읽어올 수 없습니다: \(error)")
+        }
     }
 }
+
+// MARK: - Preview
+
+//struct AnalysisResultView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AnalysisResultView()
+//    }
+//}
