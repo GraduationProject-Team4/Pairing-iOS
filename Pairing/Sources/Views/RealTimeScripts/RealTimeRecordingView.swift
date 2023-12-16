@@ -13,8 +13,9 @@ struct RealTimeRecordingView: View {
     // MARK: - PROPERTIES
     
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var networkManager = NetworkManager()
+    @StateObject var networkManager = NetworkManager()
     @State var audioRecorder: AVAudioRecorder?
+    @State private var shouldNavigateToHome = false
     
     let SAMPLE_RATE = 16000
     @State var audioData: NSMutableData!
@@ -158,10 +159,14 @@ struct RealTimeRecordingView: View {
                     .foregroundColor(Color.white)
                     .cornerRadius(8)
                     
-                    Button("녹음을 중지할래요") {}
+                    Button("녹음을 중지할래요") {
+                        shouldNavigateToHome.toggle()
+                    }
                         .font(.paragraph1)
                         .frame(width: 370, height: 30)
                         .foregroundColor(Color("Gray03"))
+                        .fullScreenCover(isPresented: $shouldNavigateToHome) {
+                            HomeView()}
                 } // VStack
                 .padding(.horizontal, 40)
                 .padding(.top, 50)

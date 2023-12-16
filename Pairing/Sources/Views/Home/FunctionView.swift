@@ -57,7 +57,7 @@ struct FunctionView: View {
                     .lineSpacing(4)
             } //: VStack
         } //: VStack
-        .frame(width: 378, height: 315)
+        .frame(width: 378, height: 295)
         .background(.white)
         .cornerRadius(16)
     }

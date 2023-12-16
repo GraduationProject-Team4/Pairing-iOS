@@ -14,9 +14,10 @@ struct AnalysisResultView: View {
     // MARK: - Properties
     
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var networkManager = NetworkManager()
     
-    @State public var recordFile: Data
+    @StateObject var networkManager = NetworkManager()
+    
+    // @State private var recordFile: Data
     
     @State private var pinOffset: CGFloat = 117
     @State private var pinCurrentLocation: CGFloat = 117
@@ -25,11 +26,11 @@ struct AnalysisResultView: View {
     @State private var representSound: String = "카페 소음"
     @State private var maxDecibelsThreshold: Float = 0.0
     
-    var sounds = [
-        Sound(name: "사이렌", image: Image(systemName: "light.beacon.min.fill")),
-        Sound(name: "사이렌", image: Image(systemName: "light.beacon.min.fill")),
-        Sound(name: "사이렌", image: Image(systemName: "light.beacon.min.fill")),
-        Sound(name: "사이렌", image: Image(systemName: "light.beacon.min.fill"))
+    @State private var sounds = [
+        Sound(name: "강아지 소리", image: Image("dog")),
+        Sound(name: "대화 소리", image: Image("conversation")),
+        Sound(name: "빗소리", image: Image("rain")),
+        Sound(name: "음악 소리", image: Image("music"))
     ]
     
     // 커스텀한 Back button
@@ -47,6 +48,9 @@ struct AnalysisResultView: View {
     var body: some View {
         ZStack {
             Image("EnviromentBackground")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea(.all)
             
             VStack {
                 Spacer()
@@ -68,10 +72,10 @@ struct AnalysisResultView: View {
                             ForEach(sounds) { sound in
                                 VStack {
                                     SoundCell(name: sound.name, image: sound.image)
-                                }
+                                }.frame(width: 340, height: 60)
                             }
-                            .frame(width: 340, height: 60)
                         } //: VStack
+                        .zIndex(10)
                         Spacer(minLength: 16)
                     } //: Scroll
                     .frame(width: 400, height: 250)
@@ -181,36 +185,36 @@ struct AnalysisResultView: View {
         } // ZStack
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
         .navigationBarItems(leading: backButton) // 커스텀 Back Button 추가
-        .onAppear(perform: {
-            networkManager.requestTestData { message, error in
-                print(message)
-            }
+//        .onAppear(perform: {
+//            networkManager.requestTestData { message, error in
+//                print(message)
+//            }
             
-            progressPrediction()
-        })
+            // progressPrediction()
+//        })
     } //: Body
 }
 
 
 extension AnalysisResultView {
-    func progressPrediction() {
-        do {
-            networkManager.postWavFile(
-                responseDataType: PredictResponse.self, 
-                file: recordFile) { result in
-                    print(result)
-                }
-        }
-        catch {
-            print("파일을 읽어올 수 없습니다: \(error)")
-        }
-    }
+//    func progressPrediction() {
+//        do {
+//            networkManager.postWavFile(
+//                responseDataType: PredictResponse.self, 
+//                file: recordFile) { result in
+//                    print(result)
+//                }
+//        }
+//        catch {
+//            print("파일을 읽어올 수 없습니다: \(error)")
+//        }
+//    }
 }
 
 // MARK: - Preview
 
-//struct AnalysisResultView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AnalysisResultView()
-//    }
-//}
+struct AnalysisResultView_Previews: PreviewProvider {
+    static var previews: some View {
+        AnalysisResultView()
+    }
+}

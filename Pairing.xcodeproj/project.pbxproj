@@ -796,7 +796,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pairing/Info.plist;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 좀 !!!! 추가해줘라 ...";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "키워드 요약 및 소음 정도 측정을 위해 마이크 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -830,7 +830,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pairing/Info.plist;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 좀 !!!! 추가해줘라 ...";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "키워드 요약 및 소음 정도 측정을 위해 마이크 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

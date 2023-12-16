@@ -63,21 +63,22 @@ struct EnvRecordingView: View {
                     .bold()
                 } // VStack
                 if beforeEnvReport {
-                    NavigationLink(destination: AnalysisResultView(recordFile: recordData), isActive: $showNextScreen) { EmptyView() }
+                    NavigationLink(destination: AnalysisResultView(), isActive: $showNextScreen) { EmptyView() }
                 }
                 else {
                     NavigationLink(destination: EnvRecordingInfoView(beforeEnvReport: false), isActive: $showNextScreen) { EmptyView() }
                 }
-                
             } // ZStack
         } // Navi
         .navigationBarBackButtonHidden(true) // 기본 Back Button 숨김
         .onAppear {
             if beforeEnvReport {
-                startRecording()
+                // startRecording()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    self.showNextScreen.toggle()
+                    print("녹음 끝")
+                }
             }
-            
-            // TODO: - 특정 데시벨 이상의 소리를 감지했을 때 경고창 화면으로 전환하는 기능 추가
             else {
                 let audioRecorder: AVAudioRecorder
 
