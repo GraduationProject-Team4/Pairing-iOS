@@ -12,8 +12,7 @@ struct PredictRequest: Encodable {
     var file: Data
 }
 
-struct PredictResponse: Decodable {
-    var message: String
+struct PredictResponse: Codable {
     var filename: String
     var predictMessage: String
     var audioPrediction: [String]

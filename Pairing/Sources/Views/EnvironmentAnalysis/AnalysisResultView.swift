@@ -195,10 +195,12 @@ struct AnalysisResultView: View {
 extension AnalysisResultView {
     func progressPrediction() {
         do {
-            networkManager.requestPrediction(audio: PredictRequest(file: recordFile)) { message, error in
-                print(message)
-            }
-        } 
+            networkManager.postWavFile(
+                responseDataType: PredictResponse.self, 
+                file: recordFile) { result in
+                    print(result)
+                }
+        }
         catch {
             print("파일을 읽어올 수 없습니다: \(error)")
         }

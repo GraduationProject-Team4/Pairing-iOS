@@ -156,10 +156,10 @@ extension EnvRecordingView {
             
             let audioSettings = [
                 AVFormatIDKey: kAudioFormatLinearPCM,
-                AVSampleRateKey: 44100,
+                AVSampleRateKey: 8000,
                 AVNumberOfChannelsKey: 2,
-                AVLinearPCMBitDepthKey: 16,
-                AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue
+                AVLinearPCMBitDepthKey: 4,
+                AVEncoderAudioQualityKey: AVAudioQuality.low.rawValue
             ] as [String : Any]
             
             let audioFilename = getDocumentsDirectory().appendingPathComponent("predictAudio.wav")
@@ -178,7 +178,7 @@ extension EnvRecordingView {
             print("녹음 시작")
             
             // 10초 후 녹음 중지
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 audioRecorder.stop()
                 self.convertWAVToData(url: audioFilename)
                 self.showNextScreen.toggle()

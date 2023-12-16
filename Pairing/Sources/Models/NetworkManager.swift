@@ -6,50 +6,43 @@
 //
 
 import Foundation
+
+import Alamofire
 import googleapis
 
 class NetworkManager: ObservableObject {
+    private var headers: HTTPHeaders = [
+        "Content-Type" : "multipart/form-data"
+    ]
     
     
-    func requestPrediction(audio: PredictRequest, completionHandler: @escaping (String?, Error?) -> ()) {
-        let uniqString = UUID().uuidString
+    
+    func postWavFile<U: Decodable>(responseDataType: U.Type,
+                                               file: Data,
+                                   completionHandler: @escaping (U)->Void) {
+        let session = Session.default
+        session.sessionConfiguration.timeoutIntervalForRequest = 1800
+        session.sessionConfiguration.timeoutIntervalForResource = 1800
         
-        guard let uploadData = try? JSONEncoder().encode(audio) else {
-            print("데이터를 인코딩할 수 없습니다.")
-            return
-        }
+        guard let url = URL(string: "http://121.165.163.173:5000/pairing") else { return }
+        print("post image 요청 URL --> \(url)")
         
-        var request = URLRequest(url: URL(string: "http://121.165.163.173:5000/pairing")!)
-        request.httpMethod = "POST"
-        request.addValue("multipart/form-data; boundary=\(uniqString)", forHTTPHeaderField: "Content-Type")
-        request.httpBody = uploadData
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("에러 발생: \(error)")
-                return
-            }
-            
-            guard let data = data else {
-                completionHandler(nil, error)
-                return
-            }
-            
-            do {
-                let res = try JSONDecoder().decode(PredictResponse.self, from: data)
-                
-                completionHandler(res.message, nil)
-            } 
-            catch {
-                completionHandler(nil, error)
-                print("Error decoding JSON to struct: \(error.localizedDescription)")
-                print(String(data: data, encoding: .utf8) ?? "")
+        AF.upload(multipartFormData: { MultipartFormData in
+            MultipartFormData.append(file, withName: "file", fileName: "predictAudio.wav", mimeType: "audio/wav")
+        }, to: url, method: .post, headers: headers)
+        .validate()
+        .responseDecodable(of: U.self) { response in
+            print(response)
+            switch response.result {
+            case .success(let success):
+                completionHandler(success)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
-        
-        // 요청 전송
-        task.resume()
+        .resume()
     }
+    
     
     
     func requestTestData(completionHandler: @escaping (String?, Error?) -> ()) {
