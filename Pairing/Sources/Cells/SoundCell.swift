@@ -12,22 +12,20 @@ import SwiftUI
 struct SoundCell: View {
     // MARK: - PROPERTIES
     
-    var name: String
-    var image: Image
+    @State public var name: String
+    @State public var image: Image
     
     var body: some View {
-        
-        
         VStack() {
-            
             HStack() {
                 image
+                    .tint(Color(.black))
                     .frame(width: 50, height: 50, alignment: .center)
-                    .scaledToFit()
-                    .background(Color("Gray01"))
+                    .scaledToFill()
                     .cornerRadius(10)
                 
                 Text(name)
+                    .foregroundColor(.black)
                     .font(.paragraph3)
                     .frame(alignment: .leading)
                 

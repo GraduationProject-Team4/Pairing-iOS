@@ -6,9 +6,71 @@
 //
 
 import Foundation
+
+import Alamofire
 import googleapis
 
 class NetworkManager: ObservableObject {
+    private var headers: HTTPHeaders = [
+        "Content-Type" : "multipart/form-data"
+    ]
+    
+    
+    
+    func postWavFile<U: Decodable>(responseDataType: U.Type,
+                                               file: Data,
+                                   completionHandler: @escaping (U)->Void) {
+        let session = Session.default
+        session.sessionConfiguration.timeoutIntervalForRequest = 1800
+        session.sessionConfiguration.timeoutIntervalForResource = 1800
+        
+        guard let url = URL(string: "http://121.165.163.173:5000/pairing") else { return }
+        print("post image 요청 URL --> \(url)")
+        
+        AF.upload(multipartFormData: { MultipartFormData in
+            MultipartFormData.append(file, withName: "file", fileName: "predictAudio.wav", mimeType: "audio/wav")
+        }, to: url, method: .post, headers: headers)
+        .validate()
+        .responseDecodable(of: U.self) { response in
+            print(response)
+            switch response.result {
+            case .success(let success):
+                completionHandler(success)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        .resume()
+    }
+    
+    
+    
+    func requestTestData(completionHandler: @escaping (String?, Error?) -> ()) {
+        var request = URLRequest(url: URL(string: "http://121.165.163.173:5000")!)
+        request.httpMethod = "GET"
+        
+        // URLSessionDataTask 생성
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            do {
+                let res = try JSONDecoder().decode(TestResponse.self, from: data)
+                
+                completionHandler(res.message, nil)
+            } catch {
+                completionHandler(nil, error)
+                print("Error decoding JSON to struct: \(error.localizedDescription)")
+                print(String(data: data, encoding: .utf8) ?? "")
+            }
+        }
+        
+        // GET 요청 전송
+        task.resume()
+    }
+    
     
     func requestKeywords(script: String, completionHandler: @escaping (String?, Error?) -> ()) {
         let apiKey = "Open_AI_Key"
